@@ -1,0 +1,1124 @@
+/* =========================================================
+   PROGRAMS SECTION
+========================================================= */
+
+.programs-section {
+  position: relative;
+
+  width: 100%;
+
+  padding: 105px 0 100px;
+
+  overflow: hidden;
+
+  color: var(--white);
+
+  background: #080808;
+}
+
+
+.programs-section::before {
+  content: "";
+
+  position: absolute;
+
+  top: 5%;
+  right: -250px;
+
+  width: 520px;
+  height: 520px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(198, 255, 0, 0.035);
+
+  filter: blur(100px);
+
+  pointer-events: none;
+}
+
+
+.programs-container {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(91%, 1380px);
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.programs-header {
+  margin-bottom: 48px;
+}
+
+
+.programs-eyebrow {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 22px;
+
+  color: var(--primary);
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+}
+
+
+.programs-eyebrow > span {
+  width: 30px;
+  height: 1px;
+
+  background: var(--primary);
+}
+
+
+.programs-heading-row {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 60px;
+}
+
+
+.programs-heading-row h2 {
+  margin: 0;
+
+  color: #f2f2ee;
+
+  font-family: var(--font-heading);
+
+  font-size:
+    clamp(
+      54px,
+      6vw,
+      88px
+    );
+
+  font-weight: 500;
+
+  line-height: 0.92;
+
+  letter-spacing: -2px;
+
+  text-transform: uppercase;
+}
+
+
+.programs-heading-row h2 span {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   HEADER RIGHT
+========================================================= */
+
+.programs-header-right {
+  width: min(420px, 100%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  gap: 22px;
+}
+
+
+.programs-header-right > p {
+  max-width: 410px;
+
+  margin: 0;
+
+  color: #777;
+
+  font-size: 11px;
+
+  line-height: 1.75;
+
+  text-align: right;
+}
+
+
+/* =========================================================
+   SLIDER CONTROLS
+========================================================= */
+
+.programs-slider-controls {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+.programs-slider-controls button {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  color: #aaa;
+
+  background: #0e0e0e;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.programs-slider-controls button:hover {
+  color: #080808;
+
+  background: var(--primary);
+
+  border-color: var(--primary);
+
+  transform: translateY(-2px);
+}
+
+
+.programs-slider-controls
+.swiper-button-disabled {
+  opacity: 0.3;
+
+  cursor: default;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SWIPER
+========================================================= */
+
+.programs-slider-wrap {
+  width: 100%;
+
+  overflow: visible;
+}
+
+
+.programs-swiper {
+  width: 100%;
+
+  overflow: visible !important;
+
+  padding-bottom: 46px !important;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| IMPORTANT ALIGNMENT
+|--------------------------------------------------------------------------
+|
+| Swiper wrapper and each slide are stretched.
+| The card therefore fills the exact slide height.
+|
+*/
+
+.programs-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+
+.program-slide {
+  height: auto !important;
+
+  display: flex;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.program-card {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  min-height: 540px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #101010 0%,
+      #0c0c0c 100%
+    );
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.09);
+
+  border-radius: 16px;
+
+  transition:
+    border-color 0.35s ease,
+    transform 0.35s ease,
+    background 0.35s ease;
+}
+
+
+.program-card:hover {
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(198, 255, 0, 0.24);
+
+  background:
+    linear-gradient(
+      180deg,
+      #121212,
+      #0d0d0d
+    );
+}
+
+
+.program-card-popular {
+  border-color:
+    rgba(198, 255, 0, 0.32);
+}
+
+
+/* =========================================================
+   POPULAR BAR
+========================================================= */
+
+.program-popular-bar {
+  height: 30px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  color: #080808;
+
+  background: var(--primary);
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   CARD BODY
+========================================================= */
+
+.program-card-body {
+  flex: 1;
+
+  display: grid;
+
+  /*
+  -----------------------------------------------------------
+  SAME ROW STRUCTURE FOR EVERY CARD
+  -----------------------------------------------------------
+  top
+  title
+  price
+  divider
+  features
+  info
+  button
+  -----------------------------------------------------------
+  */
+
+  grid-template-rows:
+    48px
+    112px
+    75px
+    1px
+    minmax(145px, 1fr)
+    72px
+    48px;
+
+  gap: 16px;
+
+  padding: 24px;
+}
+
+
+/* Popular card already has extra bar,
+   but body itself keeps identical grid. */
+
+.program-card-popular
+.program-card-body {
+  padding-top: 22px;
+}
+
+
+/* =========================================================
+   TOP
+========================================================= */
+
+.program-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+
+.program-card-icon {
+  width: 43px;
+  height: 43px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  color: var(--primary);
+
+  background:
+    rgba(198, 255, 0, 0.04);
+
+  border:
+    1px solid
+    rgba(198, 255, 0, 0.16);
+
+  border-radius: 50%;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.program-card:hover
+.program-card-icon {
+  color: #080808;
+
+  background: var(--primary);
+
+  transform: rotate(-7deg);
+}
+
+
+/* =========================================================
+   MODE BADGE
+========================================================= */
+
+.program-mode-badge {
+  min-height: 28px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 0 10px;
+
+  color: #8f8f8f;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 100px;
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 0.9px;
+
+  text-transform: uppercase;
+}
+
+
+.program-mode-badge.offline {
+  color: var(--primary);
+
+  border-color:
+    rgba(198, 255, 0, 0.17);
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.program-card-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  min-width: 0;
+}
+
+
+.program-card-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--primary);
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 1.1px;
+
+  text-transform: uppercase;
+}
+
+
+.program-card-heading h3 {
+  margin: 0;
+
+  color: #f0f0ec;
+
+  font-family: var(--font-heading);
+
+  font-size: 30px;
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: -0.5px;
+
+  text-transform: uppercase;
+}
+
+
+.program-card-heading p {
+  max-width: 260px;
+
+  margin: 8px 0 0;
+
+  color: #717171;
+
+  font-size: 9px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.program-price-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+
+.program-old-price {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #535353;
+
+  font-size: 8px;
+
+  text-decoration: line-through;
+}
+
+
+.program-price-row {
+  display: flex;
+  align-items: flex-end;
+
+  gap: 5px;
+}
+
+
+.program-price-row strong {
+  color: #fff;
+
+  font-family: var(--font-heading);
+
+  font-size: 39px;
+  font-weight: 600;
+
+  line-height: 0.9;
+}
+
+
+.program-price-row > span {
+  margin-bottom: 3px;
+
+  color: #737373;
+
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.program-divider {
+  width: 100%;
+  height: 1px;
+
+  background:
+    rgba(255, 255, 255, 0.07);
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.program-features {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+
+  min-height: 0;
+}
+
+
+.program-feature {
+  min-height: 24px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #9c9c9c;
+
+  font-size: 8.5px;
+
+  line-height: 1.4;
+}
+
+
+.program-check {
+  width: 19px;
+  height: 19px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  color: #080808;
+
+  background: var(--primary);
+
+  border-radius: 50%;
+}
+
+
+/* =========================================================
+   INFO SLOT
+========================================================= */
+
+.program-info-slot {
+  min-height: 72px;
+}
+
+
+.program-location-info,
+.program-online-info {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 11px;
+
+  background:
+    rgba(255, 255, 255, 0.022);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.065);
+
+  border-radius: 9px;
+}
+
+
+.program-location-info {
+  background:
+    rgba(198, 255, 0, 0.025);
+
+  border-color:
+    rgba(198, 255, 0, 0.11);
+}
+
+
+.program-location-info > svg,
+.program-online-info > svg {
+  flex-shrink: 0;
+
+  color: var(--primary);
+}
+
+
+.program-info-slot strong {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: #bcbcbc;
+
+  font-size: 8px;
+  font-weight: 600;
+}
+
+
+.program-info-slot p {
+  margin: 0;
+
+  color: #646464;
+
+  font-size: 7.5px;
+
+  line-height: 1.45;
+}
+
+
+/* =========================================================
+   BOOK BUTTON
+========================================================= */
+
+.program-book-button {
+  width: 100%;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding:
+    4px
+    5px
+    4px
+    17px;
+
+  color: #080808;
+
+  background: var(--primary);
+
+  border: none;
+
+  border-radius: 100px;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.program-book-arrow {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  color: #fff;
+
+  background: #080808;
+
+  border-radius: 50%;
+
+  transition:
+    transform 0.35s ease;
+}
+
+
+.program-book-button:hover {
+  background: #fff;
+
+  transform: translateY(-2px);
+}
+
+
+.program-book-button:hover
+.program-book-arrow {
+  transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.programs-swiper
+.swiper-pagination {
+  bottom: 4px !important;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+}
+
+
+.programs-swiper
+.swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+
+  margin: 0 !important;
+
+  opacity: 1;
+
+  background: #383838;
+
+  border-radius: 100px;
+
+  transition:
+    width 0.3s ease,
+    background 0.3s ease;
+}
+
+
+.programs-swiper
+.swiper-pagination-bullet-active {
+  width: 25px;
+
+  background: var(--primary);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.programs-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-top: 28px;
+
+  padding-top: 28px;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+
+.programs-footer > div > span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--primary);
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+}
+
+
+.programs-footer p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 9px;
+}
+
+
+.programs-help-button {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 11px 16px;
+
+  color: #bdbdbd;
+
+  background: transparent;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.11);
+
+  border-radius: 100px;
+
+  font-size: 7.5px;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+
+.programs-help-button:hover {
+  color: #080808;
+
+  background: var(--primary);
+
+  border-color: var(--primary);
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .program-card-body {
+    padding: 22px;
+
+    grid-template-rows:
+      48px
+      108px
+      72px
+      1px
+      minmax(145px, 1fr)
+      72px
+      48px;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .programs-section {
+    padding: 90px 0;
+  }
+
+
+  .programs-heading-row {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 25px;
+  }
+
+
+  .programs-header-right {
+    width: 100%;
+
+    align-items: flex-start;
+  }
+
+
+  .programs-header-right > p {
+    max-width: 600px;
+
+    text-align: left;
+  }
+
+
+  .programs-slider-controls {
+    align-self: flex-end;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .programs-section {
+    padding: 75px 0;
+  }
+
+
+  .programs-container {
+    width: 89%;
+  }
+
+
+  .programs-header {
+    margin-bottom: 38px;
+  }
+
+
+  .programs-heading-row h2 {
+    font-size:
+      clamp(
+        45px,
+        14vw,
+        62px
+      );
+
+    letter-spacing: -1px;
+  }
+
+
+  .programs-header-right {
+    gap: 18px;
+  }
+
+
+  .programs-slider-controls {
+    align-self: flex-start;
+  }
+
+
+  .programs-slider-controls button {
+    width: 40px;
+    height: 40px;
+  }
+
+
+  .programs-swiper {
+    overflow: visible !important;
+  }
+
+
+  .program-card {
+    min-height: 525px;
+  }
+
+
+  .program-card-body {
+    padding: 20px;
+
+    grid-template-rows:
+      45px
+      105px
+      70px
+      1px
+      minmax(140px, 1fr)
+      68px
+      46px;
+
+    gap: 14px;
+  }
+
+
+  .program-card-heading h3 {
+    font-size: 28px;
+  }
+
+
+  .program-price-row strong {
+    font-size: 36px;
+  }
+
+
+  .program-book-button {
+    height: 46px;
+  }
+
+
+  .program-book-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+
+  .programs-footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+
+  .program-card-body {
+    padding:
+      19px
+      17px;
+  }
+
+
+  .program-mode-badge {
+    font-size: 6px;
+
+    padding-inline: 8px;
+  }
+
+
+  .program-card-heading h3 {
+    font-size: 26px;
+  }
+
+}

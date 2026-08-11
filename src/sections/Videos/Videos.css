@@ -1,0 +1,665 @@
+/* =========================================================
+   SECTION
+========================================================= */
+
+.videos-section {
+  position: relative;
+  width: 100%;
+  padding: 105px 0 95px;
+  overflow: hidden;
+  background: #080808;
+  color: #fff;
+}
+
+.videos-container {
+  width: min(91%, 1380px);
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.videos-header {
+  margin-bottom: 46px;
+}
+
+.videos-kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  color: var(--primary);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.videos-kicker > span {
+  width: 30px;
+  height: 1px;
+  background: var(--primary);
+}
+
+.videos-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 70px;
+}
+
+.videos-header-row h2 {
+  margin: 0;
+
+  color: #f3f3ef;
+
+  font-family: var(--font-heading);
+
+  font-size: clamp(54px, 6vw, 86px);
+  font-weight: 500;
+
+  line-height: 0.92;
+  letter-spacing: -2px;
+
+  text-transform: uppercase;
+}
+
+.videos-header-row h2 span {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   HEADER SIDE
+========================================================= */
+
+.videos-header-side {
+  width: min(420px, 100%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  gap: 20px;
+}
+
+.videos-header-side p {
+  margin: 0;
+  max-width: 410px;
+
+  color: #848484;
+
+  font-size: 13px;
+  line-height: 1.7;
+
+  text-align: right;
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.videos-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.videos-nav button {
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  color: #aaa;
+
+  background: #111;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.videos-nav button:hover {
+  color: #080808;
+
+  background: var(--primary);
+
+  border-color: var(--primary);
+
+  transform: translateY(-2px);
+}
+
+.videos-nav .swiper-button-disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SWIPER
+========================================================= */
+
+.videos-slider-wrap {
+  overflow: visible;
+}
+
+.videos-swiper {
+  overflow: visible !important;
+  padding-bottom: 44px !important;
+}
+
+.videos-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+.video-slide {
+  height: auto !important;
+  display: flex;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.video-card {
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #101010;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 16px;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(198, 255, 0, 0.25);
+}
+
+.video-card-featured {
+  border-color:
+    rgba(198, 255, 0, 0.32);
+}
+
+
+/* =========================================================
+   THUMBNAIL
+========================================================= */
+
+.video-thumb {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 9 / 13;
+
+  overflow: hidden;
+
+  background: #050505;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.8s
+    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.video-card:hover .video-thumb img {
+  transform: scale(1.04);
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.72),
+      transparent 48%
+    );
+}
+
+
+/* =========================================================
+   FEATURED
+========================================================= */
+
+.video-featured {
+  position: absolute;
+
+  top: 13px;
+  left: 13px;
+
+  z-index: 4;
+
+  padding: 8px 11px;
+
+  color: #080808;
+
+  background: var(--primary);
+
+  border-radius: 100px;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
+}
+
+
+/* =========================================================
+   DURATION
+========================================================= */
+
+.video-duration {
+  position: absolute;
+
+  top: 13px;
+  right: 13px;
+
+  z-index: 4;
+
+  padding: 7px 10px;
+
+  color: #fff;
+
+  background:
+    rgba(8, 8, 8, 0.75);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.15);
+
+  border-radius: 100px;
+
+  font-size: 9px;
+
+  backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   PLAY
+========================================================= */
+
+.video-play {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  z-index: 5;
+
+  width: 60px;
+  height: 60px;
+
+  display: grid;
+  place-items: center;
+
+  transform: translate(-50%, -50%);
+
+  color: #080808;
+
+  background: var(--primary);
+
+  border-radius: 50%;
+
+  transition:
+    background 0.3s ease,
+    transform 0.35s ease;
+}
+
+.video-card:hover .video-play {
+  background: #fff;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1.08);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.video-content {
+  padding: 19px 20px 18px;
+}
+
+.video-category {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--primary);
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+
+  text-transform: uppercase;
+}
+
+.video-content h3 {
+  min-height: 54px;
+
+  margin: 0;
+
+  color: #f0f0ec;
+
+  font-family: var(--font-heading);
+
+  font-size: 25px;
+  font-weight: 500;
+
+  line-height: 1.08;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   BOTTOM LINK
+========================================================= */
+
+.video-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 16px;
+  padding-top: 14px;
+
+  color: #8b8b8b;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  transition: color 0.3s ease;
+}
+
+.video-card:hover .video-card-bottom {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.videos-swiper .swiper-pagination {
+  bottom: 3px !important;
+}
+
+.videos-swiper
+.swiper-pagination-bullet {
+  width: 7px;
+  height: 7px;
+
+  margin: 0 3px !important;
+
+  opacity: 1;
+
+  background: #3b3b3b;
+
+  transition:
+    width 0.3s ease,
+    background 0.3s ease;
+}
+
+.videos-swiper
+.swiper-pagination-bullet-active {
+  width: 26px;
+
+  border-radius: 100px;
+
+  background: var(--primary);
+}
+
+
+/* =========================================================
+   BOTTOM CTA
+========================================================= */
+
+.videos-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 35px;
+
+  margin-top: 28px;
+  padding-top: 34px;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+.videos-bottom-copy > span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: var(--primary);
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 1.3px;
+}
+
+.videos-bottom-copy h3 {
+  margin: 0;
+
+  color: #efefeb;
+
+  font-family: var(--font-heading);
+
+  font-size: clamp(27px, 3vw, 40px);
+  font-weight: 500;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+}
+
+.videos-bottom-copy h3 strong {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   CTA BUTTON
+========================================================= */
+
+.videos-bottom button {
+  min-height: 52px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 22px;
+
+  padding:
+    4px
+    5px
+    4px
+    18px;
+
+  color: #080808;
+
+  background: var(--primary);
+
+  border: none;
+  border-radius: 100px;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.videos-bottom button > span {
+  width: 41px;
+  height: 41px;
+
+  display: grid;
+  place-items: center;
+
+  color: #fff;
+
+  background: #080808;
+
+  border-radius: 50%;
+
+  transition: transform 0.35s ease;
+}
+
+.videos-bottom button:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.videos-bottom button:hover > span {
+  transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .videos-section {
+    padding: 85px 0;
+  }
+
+  .videos-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+  }
+
+  .videos-header-side {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .videos-header-side p {
+    max-width: 600px;
+    text-align: left;
+  }
+
+  .videos-nav {
+    align-self: flex-end;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .videos-section {
+    padding: 72px 0;
+  }
+
+  .videos-container {
+    width: 89%;
+  }
+
+  .videos-header {
+    margin-bottom: 36px;
+  }
+
+  .videos-header-row h2 {
+    font-size: clamp(
+      45px,
+      14vw,
+      61px
+    );
+
+    letter-spacing: -1px;
+  }
+
+  .videos-header-side p {
+    font-size: 12px;
+  }
+
+  .videos-nav {
+    align-self: flex-start;
+  }
+
+  .video-content h3 {
+    min-height: auto;
+  }
+
+  .videos-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .videos-bottom button {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
