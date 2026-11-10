@@ -74,7 +74,7 @@ const Header = ({ onConsultationOpen }) => {
             type="button"
           >
             <span className="logo-main">
-              RAJIN
+              RAJIV
             </span>
 
             <span className="logo-dot"></span>

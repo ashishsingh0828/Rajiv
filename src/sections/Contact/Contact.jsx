@@ -5,10 +5,13 @@ import {
   Phone,
   Send,
   MessageCircle,
+  Loader2,
 } from "lucide-react";
 
 import { motion } from "motion/react";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { sendContactMessage } from "../../services/api";
 
 import "./Contact.css";
 
@@ -19,6 +22,7 @@ const Contact = ({ onConsultationOpen }) => {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,12 +33,29 @@ const Contact = ({ onConsultationOpen }) => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    if (isSubmitting) return;
 
-    console.log("Contact form:", formData);
-
-    // Backend API will connect here later.
+    try {
+      setIsSubmitting(true);
+      await sendContactMessage(formData);
+      toast.success("Thank you! Your message has been sent to Rajiv. We will reply shortly!");
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Contact form error:", error);
+      toast.error(
+        error?.response?.data?.message ||
+          "Failed to send message. Please WhatsApp or call Rajiv directly at +91 99968 89494."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -315,13 +336,15 @@ const Contact = ({ onConsultationOpen }) => {
                 <button
                   type="submit"
                   className="contact-submit"
+                  disabled={isSubmitting}
+                  style={isSubmitting ? { opacity: 0.7, cursor: "not-allowed" } : {}}
                 >
                   <span>
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </span>
 
                   <span>
-                    <Send size={18} />
+                    {isSubmitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
                   </span>
                 </button>
               </div>

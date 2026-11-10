@@ -76,7 +76,7 @@ const Footer = ({ onConsultationOpen }) => {
                 onClick={() => handleScroll("#home")}
                 type="button"
               >
-                <span>RAJIN</span>
+                <span>RAJIV</span>
                 <i></i>
               </button>
 
@@ -284,7 +284,7 @@ const Footer = ({ onConsultationOpen }) => {
         <div className="footer-container footer-bottom-inner">
 
           <p>
-            © {currentYear} Rajin. All Rights Reserved.
+            © {currentYear} Rajiv Dalal. All Rights Reserved.
           </p>
 
           <div className="footer-bottom-center">

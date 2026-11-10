@@ -82,15 +82,10 @@ function Home() {
             openConsultation
           }
         />
-        
-<Programs
-  onBookProgram={openBooking}
-  onConsultationOpen={openConsultation}
-/>
 
-<Transformations
-  onConsultationOpen={openConsultation}
-/>
+        <Transformations
+          onConsultationOpen={openConsultation}
+        />
 <Videos
   onConsultationOpen={openConsultation}
 />

@@ -10,7 +10,10 @@ import {
   Check,
   MapPin,
   Dumbbell,
+  Loader2,
 } from "lucide-react";
+import { toast } from "react-toastify";
+import { createConsultation } from "../../services/api";
 
 import "./ConsultationModal.css";
 
@@ -31,7 +34,7 @@ const ConsultationModal = ({ isOpen, onClose }) => {
     goal: "",
     message: "",
   });
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [goalOpen, setGoalOpen] = useState(false);
 
   useEffect(() => {
@@ -79,12 +82,33 @@ const ConsultationModal = ({ isOpen, onClose }) => {
     setGoalOpen(false);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    if (isSubmitting) return;
 
-    console.log("Consultation form:", formData);
-
-    // API integration will be added later.
+    try {
+      setIsSubmitting(true);
+      await createConsultation(formData);
+      toast.success("Free consultation request submitted! Rajiv will contact you shortly.");
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        goal: "",
+        message: "",
+      });
+      setTimeout(() => {
+        onClose();
+      }, 1000);
+    } catch (error) {
+      console.error("Consultation form error:", error);
+      toast.error(
+        error?.response?.data?.message ||
+          "Failed to submit consultation. Please WhatsApp Rajiv directly at +91 99968 89494."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -433,14 +457,20 @@ const ConsultationModal = ({ isOpen, onClose }) => {
                 <button
                   type="submit"
                   className="consultation-submit"
+                  disabled={isSubmitting}
+                  style={isSubmitting ? { opacity: 0.7, cursor: "not-allowed" } : {}}
                 >
 
                   <span>
-                    Book Free Consultation
+                    {isSubmitting ? "Submitting..." : "Book Free Consultation"}
                   </span>
 
                   <span className="consultation-submit-icon">
-                    <ArrowUpRight size={19} />
+                    {isSubmitting ? (
+                      <Loader2 size={19} className="animate-spin" />
+                    ) : (
+                      <ArrowUpRight size={19} />
+                    )}
                   </span>
 
                 </button>
