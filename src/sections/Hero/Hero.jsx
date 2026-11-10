@@ -102,22 +102,12 @@ const Hero = ({ onConsultationOpen }) => {
 
           <motion.p
             className="hero-text"
-            initial={{
-              opacity: 0,
-              y: 25,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.65,
-              delay: 0.28,
-            }}
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.28 }}
           >
-            Personalized training, nutrition, and lifestyle guidance
-            built around your routine — so you can make progress
-            without giving up the life you already have.
+            Personalized strength training, authentic Indian nutrition, and sustainable habits
+            coached directly by Rajiv Dalal in Bahadurgarh &amp; online worldwide.
           </motion.p>
 
 

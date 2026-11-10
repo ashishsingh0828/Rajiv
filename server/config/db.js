@@ -9,7 +9,7 @@ export const connectDB = async () => {
 
   const mongoUri =
     process.env.MONGO_URI ||
-    "mongodb+srv://ashishsingh0828_db_user:aj88XpPJzbIddp3m@cluster0.jfbjbp9.mongodb.net/rajivDB?retryWrites=true&w=majority&appName=Cluster0";
+    "mongodb+srv://ashishsingh0828_db_user:DvYQKjYinWrOuTSE@cluster0.a2kqnhf.mongodb.net/rajivDB?retryWrites=true&w=majority&appName=Cluster0";
 
   try {
     const conn = await mongoose.connect(mongoUri, {

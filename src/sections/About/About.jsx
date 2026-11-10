@@ -137,7 +137,7 @@ const About = ({ onConsultationOpen }) => {
               }}
             >
               <img
-                src="/assets/images/about/rajiv-training.jpg"
+                src="/images/videos/rajiv-video-1.jpg"
                 alt="Rajiv training"
               />
 

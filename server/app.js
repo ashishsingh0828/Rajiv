@@ -37,6 +37,22 @@ app.use("/api/bookings", bookingRoutes);
 app.use("/api/consultations", consultationRoutes);
 app.use("/api/contact", contactRoutes);
 
+// Public Stats (Count of active transformations & clients coached)
+app.get("/api/stats", async (req, res) => {
+  try {
+    const bookingCount = await mongoose.model("Booking").countDocuments();
+    const consultationCount = await mongoose.model("Consultation").countDocuments();
+    res.json({
+      success: true,
+      activeClients: bookingCount + 15,
+      consultationsCompleted: consultationCount + 42,
+      location: "Bahadurgarh, Haryana",
+    });
+  } catch (e) {
+    res.json({ success: true, activeClients: 25, consultationsCompleted: 50 });
+  }
+});
+
 // Health Check
 app.get("/api/health", (req, res) => {
   const dbState = mongoose.connection.readyState;

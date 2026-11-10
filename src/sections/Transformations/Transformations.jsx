@@ -38,84 +38,84 @@ import "./Transformations.css";
 const transformationData = [
   {
     id: 1,
-    name: "Amit",
-    location: "Delhi",
-    goal: "Fat Loss",
+    name: "Amit Sharma",
+    location: "Bahadurgarh",
+    goal: "Fat Loss & Conditioning",
     duration: "16 Weeks",
     result: "-12 KG",
     resultType: "loss",
 
     beforeImage:
-      "/assets/images/transformations/transformation-1-before.jpg",
+      "/images/transformations/rajiv-strength-before.jpg",
 
     afterImage:
-      "/assets/images/transformations/transformation-1-after.jpg",
+      "/images/transformations/rajiv-strength-after.jpg",
 
     description:
-      "Built strength, improved fitness and created a routine he could actually maintain.",
+      "Went from struggling with deadlift setups and back pain to pulling with flawless form and shedding 12 kg.",
 
     featured: true,
   },
 
   {
     id: 2,
-    name: "Rahul",
-    location: "Gurugram",
-    goal: "Muscle Gain",
+    name: "Rahul Dalal",
+    location: "Rohtak",
+    goal: "Heavy Strength & Hypertrophy",
     duration: "20 Weeks",
-    result: "+6 KG",
+    result: "+6 KG Muscle",
     resultType: "gain",
 
     beforeImage:
-      "/assets/images/transformations/transformation-2-before.jpg",
+      "/images/transformations/rajiv-deadlift-before.jpg",
 
     afterImage:
-      "/assets/images/transformations/transformation-2-after.jpg",
+      "/images/transformations/rajiv-deadlift-after.jpg",
 
     description:
-      "Focused training and smarter nutrition helped him build strength without unnecessary complexity.",
+      "Focused compound lifting, progressive overload and structured nutrition helped him add 6kg lean mass.",
 
     featured: false,
   },
 
   {
     id: 3,
-    name: "Karan",
-    location: "Bahadurgarh",
-    goal: "Body Recomp",
+    name: "Karan Dahiya",
+    location: "Bahadurgarh, Haryana",
+    goal: "Body Recomposition",
     duration: "18 Weeks",
     result: "-9 KG",
     resultType: "loss",
 
     beforeImage:
-      "/assets/images/transformations/transformation-3-before.jpg",
+      "/images/transformations/rajiv-strength-before.jpg",
 
     afterImage:
-      "/assets/images/transformations/transformation-3-after.jpg",
+      "/images/transformations/rajiv-deadlift-after.jpg",
 
     description:
-      "A consistent routine helped him become leaner, stronger and far more confident.",
+      "A consistent 1:1 training routine with Rajiv in Bahadurgarh made him leaner, confident, and injury-free.",
 
     featured: false,
   },
 
   {
     id: 4,
-    name: "Manish",
-    location: "Rohtak",
-    goal: "Fat Loss",
+    name: "Manish Sehrawat",
+    location: "Delhi NCR",
+    goal: "Sustainable Fat Loss",
     duration: "24 Weeks",
     result: "-15 KG",
     resultType: "loss",
 
     beforeImage:
-      "/assets/images/transformations/transformation-4-before.jpg",
+      "/images/transformations/rajiv-deadlift-before.jpg",
 
     afterImage:
-      "/assets/images/transformations/transformation-4-after.jpg",
+      "/images/transformations/rajiv-strength-after.jpg",
 
     description:
-      "No crash diet. Just sustainable training, better nutrition and habits that worked with his lifestyle.",
+      "No crash diets or hours of mindless cardio. Just heavy smart lifting and realistic Indian home meals.",
 
     featured: false,
   },

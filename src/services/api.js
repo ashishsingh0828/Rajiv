@@ -35,6 +35,14 @@ export const sendContactMessage = async (contactData) => {
 };
 
 /**
+ * Fetch public stats & counts
+ */
+export const getStats = async () => {
+  const response = await apiClient.get("/stats");
+  return response.data;
+};
+
+/**
  * Check backend health & DB connection
  */
 export const checkHealth = async () => {
