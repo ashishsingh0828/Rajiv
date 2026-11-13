@@ -89,7 +89,7 @@ const ConsultationModal = ({ isOpen, onClose }) => {
     try {
       setIsSubmitting(true);
       await createConsultation(formData);
-      toast.success("Free consultation request submitted! Rajiv will contact you shortly.");
+      toast.success("Free consultation request submitted! Coach Rajiv will contact you shortly.");
       setFormData({
         name: "",
         phone: "",
@@ -130,11 +130,19 @@ const ConsultationModal = ({ isOpen, onClose }) => {
           <div className="consultation-sidebar-top">
 
             <div className="consultation-brand">
-              <span className="consultation-brand-name">
-                RAJIV
-              </span>
-
-              <span className="consultation-brand-dot"></span>
+              <div className="consultation-brand-badge">
+                <img
+                  src="/images/logo.jpg"
+                  alt="Aurafit by Rajiv"
+                  className="consultation-brand-img"
+                />
+              </div>
+              <div className="consultation-brand-text">
+                <span className="consultation-brand-name">
+                  AURA<span className="consultation-brand-accent">FIT</span>
+                </span>
+                <span className="consultation-brand-sub">BY RAJIV</span>
+              </div>
             </div>
 
             <div className="consultation-kicker">
@@ -223,7 +231,7 @@ const ConsultationModal = ({ isOpen, onClose }) => {
             <span className="consultation-sidebar-line"></span>
 
             <p>
-              FITNESS • PERFORMANCE • LIFESTYLE
+              AURAFIT • PERFORMANCE • STRENGTH
             </p>
 
           </div>
@@ -261,8 +269,8 @@ const ConsultationModal = ({ isOpen, onClose }) => {
               </h3>
 
               <p>
-                Complete the form and our team will contact
-                you to discuss your goals.
+                Complete the form and coach Rajiv will contact
+                you to discuss your personalized coaching roadmap.
               </p>
 
             </div>
@@ -477,8 +485,8 @@ const ConsultationModal = ({ isOpen, onClose }) => {
 
 
                 <p className="consultation-privacy">
-                  Your information stays private and will only
-                  be used to contact you about coaching.
+                  Your information is securely encrypted and will only
+                  be used by Aurafit to contact you about coaching.
                 </p>
 
               </div>

@@ -66,7 +66,7 @@ app.get("/api/health", (req, res) => {
   res.json({
     status: "ok",
     timestamp: new Date().toISOString(),
-    service: "Rajiv Fitness API",
+    service: "Aurafit by Rajiv API",
     database: {
       status: dbStatusMap[dbState] || "unknown",
       name: mongoose.connection.name || "rajivDB",

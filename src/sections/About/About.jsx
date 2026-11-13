@@ -46,7 +46,7 @@ const About = ({ onConsultationOpen }) => {
             transition={{ duration: 0.55 }}
           >
             <span></span>
-            MEET RAJIV
+            ABOUT AURAFIT &amp; RAJIV
           </motion.div>
 
           <div className="about-intro-grid">
@@ -82,7 +82,7 @@ const About = ({ onConsultationOpen }) => {
               </p>
 
               <p>
-                Rajiv focuses on helping people train better, eat smarter and
+                At <strong>Aurafit</strong>, Rajiv focuses on helping people train better, eat smarter and
                 build habits they can actually maintain — without making
                 fitness feel like a full-time job.
               </p>
@@ -116,10 +116,16 @@ const About = ({ onConsultationOpen }) => {
               <div className="about-main-image-overlay"></div>
 
               <div className="about-image-badge">
-                <BadgeCheck size={17} />
+                <div className="about-image-badge-logo">
+                  <img
+                    src="/images/logo.jpg"
+                    alt="Aurafit logo"
+                    className="about-image-badge-logo-img"
+                  />
+                </div>
 
                 <div>
-                  <span>PERSONAL COACHING</span>
+                  <span>AURAFIT COACHING</span>
                   <strong>Built Around You</strong>
                 </div>
               </div>
@@ -149,7 +155,7 @@ const About = ({ onConsultationOpen }) => {
 
 
             <div className="about-visual-word">
-              RAJIV
+              AURAFIT
             </div>
 
           </motion.div>
@@ -170,7 +176,7 @@ const About = ({ onConsultationOpen }) => {
 
             <div className="about-mini-heading">
               <Sparkles size={16} />
-              RAJIV'S APPROACH
+              THE AURAFIT PHILOSOPHY
             </div>
 
             <h3>
@@ -240,7 +246,7 @@ const About = ({ onConsultationOpen }) => {
               className="about-cta"
               onClick={onConsultationOpen}
             >
-              <span>Talk To Rajiv</span>
+              <span>Consult With Rajiv</span>
 
               <span className="about-cta-icon">
                 <ArrowUpRight size={18} />

@@ -41,7 +41,7 @@ const Hero = ({ onConsultationOpen }) => {
 
       {/* DECORATIVE SIDE TEXT */}
       <div className="hero-side-label">
-        FITNESS • STRENGTH • LIFESTYLE
+        AURAFIT • STRENGTH • LIFESTYLE
       </div>
 
 
@@ -67,8 +67,7 @@ const Hero = ({ onConsultationOpen }) => {
             }}
           >
             <span className="hero-eyebrow-dot"></span>
-
-            Personal Fitness Coaching
+            Aurafit Personal Fitness Coaching
           </motion.div>
 
 
@@ -228,8 +227,8 @@ const Hero = ({ onConsultationOpen }) => {
               </div>
 
               <p>
-                Trusted by people working toward
-                better health and stronger bodies.
+                Trusted by 50+ clients working toward
+                better health, fat loss and stronger bodies with Aurafit.
               </p>
 
             </div>
@@ -262,9 +261,16 @@ const Hero = ({ onConsultationOpen }) => {
 
           <div className="hero-coach-content">
 
-            <span className="hero-coach-small">
-              COACHING WITH
-            </span>
+            <div className="hero-coach-badge-row">
+              <img
+                src="/images/logo.jpg"
+                alt="Aurafit logo"
+                className="hero-coach-logo-img"
+              />
+              <span className="hero-coach-small">
+                AURAFIT COACHING
+              </span>
+            </div>
 
             <h3>
               RAJIV

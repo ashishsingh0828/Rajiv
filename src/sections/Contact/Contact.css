@@ -19,7 +19,7 @@
   width: 540px;
   height: 540px;
   border-radius: 50%;
-  background: rgba(198, 255, 0, 0.04);
+  background: rgba(0, 229, 117, 0.05);
   filter: blur(100px);
   pointer-events: none;
 }
@@ -219,10 +219,11 @@ a.contact-item:hover {
   color: var(--primary);
 
   background:
-    rgba(198, 255, 0, 0.05);
+    rgba(0, 229, 117, 0.08);
 
   border:
-    1px solid rgba(198, 255, 0, 0.14);
+    1px solid rgba(0, 229, 117, 0.25);
+  box-shadow: 0 0 12px rgba(0, 229, 117, 0.12);
 
   border-radius: 50%;
 }
@@ -288,10 +289,10 @@ a.contact-item:hover > svg {
   padding: 15px;
 
   background:
-    rgba(198, 255, 0, 0.035);
+    rgba(0, 229, 117, 0.05);
 
   border:
-    1px solid rgba(198, 255, 0, 0.13);
+    1px solid rgba(0, 229, 117, 0.2);
 
   border-radius: 12px;
 
@@ -341,10 +342,11 @@ a.contact-item:hover > svg {
 
 .contact-consultation:hover {
   background:
-    rgba(198, 255, 0, 0.06);
+    rgba(0, 229, 117, 0.1);
 
   border-color:
-    rgba(198, 255, 0, 0.25);
+    rgba(0, 229, 117, 0.4);
+  box-shadow: 0 0 20px rgba(0, 229, 117, 0.15);
 }
 
 .contact-consultation:hover > svg:last-child {
@@ -473,11 +475,11 @@ a.contact-item:hover > svg {
 .contact-field input:focus,
 .contact-field textarea:focus {
   border-color:
-    rgba(198, 255, 0, 0.45);
+    rgba(0, 229, 117, 0.5);
 
   box-shadow:
     0 0 0 3px
-    rgba(198, 255, 0, 0.025);
+    rgba(0, 229, 117, 0.08);
 }
 
 
@@ -502,6 +504,7 @@ a.contact-item:hover > svg {
   color: #080808;
 
   background: var(--primary);
+  box-shadow: 0 0 20px rgba(0, 229, 117, 0.28);
 
   border: none;
   border-radius: 100px;
@@ -538,6 +541,7 @@ a.contact-item:hover > svg {
 
 .contact-submit:hover {
   background: #ffffff;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
 }
 

@@ -152,7 +152,7 @@ const Transformations = ({
           >
             <span className="transformations-kicker-line" />
 
-            CLIENT RESULTS
+            AURAFIT CLIENT RESULTS
           </motion.div>
 
 
@@ -202,10 +202,10 @@ const Transformations = ({
               }}
             >
               <p>
-                Real people. Real work. Real progress.
-                Drag across each transformation to compare
+                Real clients. Real work. Real progress.
+                Drag across each Aurafit transformation to compare
                 the journey from where they started to
-                where consistency took them.
+                where consistency with Rajiv took them.
               </p>
 
 

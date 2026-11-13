@@ -20,8 +20,8 @@ function getTransporter() {
   });
 }
 
-const getMailFrom = () => {
-  return process.env.MAIL_FROM || "Rajiv Fitness Coaching <iemarbletraders@gmail.com>";
+  const getMailFrom = () => {
+  return process.env.MAIL_FROM || "Aurafit by Rajiv <iemarbletraders@gmail.com>";
 };
 
 const getAdminRecipients = () => {
@@ -102,7 +102,7 @@ export async function sendBookingNotifications(booking) {
     </div>
 
     <div style="background: #090a0c; padding: 16px 28px; text-align: center; border-top: 1px solid #1c1f26; font-size: 12px; color: #697082;">
-      Rajiv Fitness Coaching • Bahadurgarh, Haryana • +91 99968 89494
+      Aurafit by Rajiv Dalal • Bahadurgarh, Haryana • +91 99968 89494
     </div>
   </div>
   `;
@@ -111,7 +111,7 @@ export async function sendBookingNotifications(booking) {
   const customerHtml = `
   <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; color: #1f2937; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
     <div style="background: #0d1117; padding: 26px 30px; text-align: center;">
-      <h1 style="color: #ffffff; margin: 0; font-size: 24px; letter-spacing: 2px;">RAJIV DALAL</h1>
+      <h1 style="color: #ffffff; margin: 0; font-size: 24px; letter-spacing: 2px;">AURAFIT <span style="color: #00e575;">BY RAJIV</span></h1>
       <p style="color: #9ca3af; margin: 6px 0 0 0; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;">Fitness • Strength • Lifestyle</p>
     </div>
 
@@ -184,9 +184,9 @@ export async function sendBookingNotifications(booking) {
       await transporter.sendMail({
         from: getMailFrom(),
         to: booking.email,
-        subject: `Booking Confirmed: ${booking.programName} | Rajiv Fitness Coaching`,
+        subject: `Booking Confirmed: ${booking.programName} | Aurafit by Rajiv`,
         html: customerHtml,
-        text: `Hi ${booking.name},\nThank you for booking ${booking.programName} with Rajiv Fitness Coaching. Your Booking ID is ${booking.bookingId}. Rajiv will contact you shortly on ${booking.phone}.`,
+        text: `Hi ${booking.name},\nThank you for booking ${booking.programName} with Aurafit by Rajiv. Your Booking ID is ${booking.bookingId}. Rajiv will contact you shortly on ${booking.phone}.`,
       });
       console.log(`[Email] Customer confirmation sent to: ${booking.email}`);
     }

@@ -75,15 +75,27 @@ const Footer = ({ onConsultationOpen }) => {
                 className="footer-logo"
                 onClick={() => handleScroll("#home")}
                 type="button"
+                aria-label="Aurafit by Rajiv - Back to top"
               >
-                <span>RAJIV</span>
-                <i></i>
+                <div className="footer-logo-badge">
+                  <img
+                    src="/images/logo.jpg"
+                    alt="Aurafit by Rajiv"
+                    className="footer-logo-img"
+                  />
+                </div>
+                <div className="footer-logo-text">
+                  <span className="footer-logo-main">
+                    AURA<span className="footer-logo-accent">FIT</span>
+                  </span>
+                  <span className="footer-logo-sub">BY RAJIV</span>
+                </div>
               </button>
 
               <p className="footer-description">
-                Personalized fitness, nutrition and lifestyle coaching
-                designed to help you build strength, improve performance
-                and create long-lasting transformation.
+                <strong>Aurafit by Rajiv Dalal</strong> — Personalized fitness, nutrition and lifestyle coaching
+                designed to help you build real strength, improve performance
+                and create sustainable habits that work with your routine.
               </p>
 
               <div className="footer-socials">
@@ -257,8 +269,8 @@ const Footer = ({ onConsultationOpen }) => {
               </h3>
 
               <p>
-                Sustainable training. Smart nutrition. Better habits.
-                A complete approach designed around your lifestyle.
+                Sustainable strength. Smart Indian nutrition. Better habits.
+                A complete coaching system designed around your lifestyle by Rajiv Dalal.
               </p>
 
               <button
@@ -284,12 +296,12 @@ const Footer = ({ onConsultationOpen }) => {
         <div className="footer-container footer-bottom-inner">
 
           <p>
-            © {currentYear} Rajiv Dalal. All Rights Reserved.
+            © {currentYear} Aurafit by Rajiv Dalal. All Rights Reserved.
           </p>
 
           <div className="footer-bottom-center">
             <span></span>
-            FITNESS • PERFORMANCE • LIFESTYLE
+            AURAFIT • STRENGTH • PERFORMANCE
           </div>
 
           <button

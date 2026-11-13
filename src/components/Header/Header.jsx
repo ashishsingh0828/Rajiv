@@ -70,14 +70,23 @@ const Header = ({ onConsultationOpen }) => {
           <button
             className="header-logo"
             onClick={() => handleNavigation("#home")}
-            aria-label="Go to home"
+            aria-label="Aurafit by Rajiv - Home"
             type="button"
           >
-            <span className="logo-main">
-              RAJIV
-            </span>
+            <div className="header-logo-badge">
+              <img
+                src="/images/logo.jpg"
+                alt="Aurafit by Rajiv"
+                className="header-logo-img"
+              />
+            </div>
 
-            <span className="logo-dot"></span>
+            <div className="header-logo-text">
+              <span className="logo-main">
+                AURA<span className="logo-accent">FIT</span>
+              </span>
+              <span className="logo-sub">BY RAJIV</span>
+            </div>
           </button>
 
 
@@ -259,8 +268,7 @@ const Header = ({ onConsultationOpen }) => {
               >
 
                 <p>
-                  Online Fitness &
-                  Lifestyle Coaching
+                  Aurafit by Rajiv • Fitness &amp; Strength Coaching
                 </p>
 
 

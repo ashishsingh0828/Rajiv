@@ -53,13 +53,18 @@
   inset: 0;
 
   background:
+    radial-gradient(
+      circle at 18% 30%,
+      rgba(0, 229, 117, 0.06),
+      transparent 55%
+    ),
     linear-gradient(
       90deg,
-      #080808 0%,
-      #080808 32%,
-      rgba(8, 8, 8, 0.93) 42%,
-      rgba(8, 8, 8, 0.55) 60%,
-      rgba(8, 8, 8, 0.1) 100%
+      #090a0e 0%,
+      #090a0e 32%,
+      rgba(9, 10, 14, 0.93) 42%,
+      rgba(9, 10, 14, 0.55) 60%,
+      rgba(9, 10, 14, 0.1) 100%
     );
 }
 
@@ -144,7 +149,7 @@
 
   box-shadow:
     0 0 0 5px
-    rgba(198, 255, 0, 0.08);
+    rgba(0, 229, 117, 0.15);
 }
 
 
@@ -177,6 +182,7 @@
 
 .hero-copy h1 span {
   color: var(--primary);
+  text-shadow: 0 0 30px rgba(0, 229, 117, 0.35);
 }
 
 
@@ -264,6 +270,7 @@
     23px;
 
   background: var(--primary);
+  box-shadow: 0 0 24px rgba(0, 229, 117, 0.35);
 
   color: #080808;
 
@@ -374,10 +381,10 @@
 
 .hero-watch-button:hover {
   border-color:
-    rgba(198, 255, 0, 0.45);
+    rgba(0, 229, 117, 0.45);
 
   background:
-    rgba(198, 255, 0, 0.04);
+    rgba(0, 229, 117, 0.06);
 
   transform: translateY(-3px);
 }
@@ -494,16 +501,31 @@
   width: 32px;
   height: 2px;
 
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 
   background: var(--primary);
+  box-shadow: 0 0 10px rgba(0, 229, 117, 0.4);
+}
+
+.hero-coach-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.hero-coach-logo-img {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid rgba(0, 229, 117, 0.4);
 }
 
 .hero-coach-small {
-  color: #888;
-
-  font-size: 8px;
-
+  color: var(--primary);
+  font-size: 8.5px;
+  font-weight: 700;
   letter-spacing: 1.5px;
 }
 
@@ -574,12 +596,12 @@
 
   border-top:
     1px solid
-    rgba(255, 255, 255, 0.1);
+    rgba(255, 255, 255, 0.08);
 
   background:
-    rgba(8, 8, 8, 0.82);
+    rgba(9, 10, 14, 0.88);
 
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
 }
 
 .hero-bottom-inner {

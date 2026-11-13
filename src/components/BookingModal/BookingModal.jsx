@@ -73,7 +73,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
 
   // Deep link for mobile UPI apps (PhonePe, GPay, Paytm)
   const upiDeepLink = useMemo(() => {
-    const note = encodeURIComponent(`Rajiv Fitness - ${program?.name || "Coaching"}`);
+    const note = encodeURIComponent(`Aurafit by Rajiv - ${program?.name || "Coaching"}`);
     const name = encodeURIComponent(PAYEE_NAME);
     return `upi://pay?pa=${UPI_ID}&pn=${name}&am=${finalPrice}&cu=INR&tn=${note}`;
   }, [finalPrice, program]);
@@ -136,7 +136,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
 
       setBookingResult(res.booking);
       setStep(3);
-      toast.success("Payment confirmed & booking saved! Confirmation email sent.");
+      toast.success("Payment confirmed & booking saved! Confirmation email sent via Aurafit.");
     } catch (error) {
       console.error("Payment submission error:", error);
       toast.error(
@@ -169,8 +169,19 @@ const BookingModal = ({ isOpen, onClose, program }) => {
         ====================================================== */}
         <aside className="booking-summary">
           <div className="booking-brand">
-            <span>RAJIV</span>
-            <i></i>
+            <div className="booking-brand-badge">
+              <img
+                src="/images/logo.jpg"
+                alt="Aurafit by Rajiv"
+                className="booking-brand-img"
+              />
+            </div>
+            <div className="booking-brand-text">
+              <span className="booking-brand-name">
+                AURA<span className="booking-brand-accent">FIT</span>
+              </span>
+              <span className="booking-brand-sub">BY RAJIV</span>
+            </div>
           </div>
 
           <div className="booking-summary-main">
@@ -216,7 +227,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
 
           <div className="booking-summary-bottom">
             <ShieldCheck size={16} />
-            <span>Secure booking verified by Rajiv Dalal</span>
+            <span>Secure booking • Aurafit by Rajiv</span>
           </div>
         </aside>
 
@@ -547,7 +558,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                   <ShieldCheck size={14} />
                   <p>
                     Payments are handled directly via PhonePe UPI to Rajiv Dalal.
-                    Your booking is securely recorded in our database and Google Gmail notification is sent instantly.
+                    Your booking is securely recorded in Aurafit database and automated Google Gmail notification is sent instantly.
                   </p>
                 </div>
               </div>
@@ -617,7 +628,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                 <div className="booking-success-actions">
                   <a
                     href={`https://wa.me/919996889494?text=${encodeURIComponent(
-                      `Hi Rajiv! I just booked the ${program.name} plan (₹${finalPrice}) on your website. My Booking ID is ${
+                      `Hi Rajiv! I just booked the ${program.name} plan (₹${finalPrice}) on Aurafit website. My Booking ID is ${
                         bookingResult?.bookingId || ""
                       } and my UTR is ${formData.transactionId}.`
                     )}`}

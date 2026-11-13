@@ -40,7 +40,7 @@ const Contact = ({ onConsultationOpen }) => {
     try {
       setIsSubmitting(true);
       await sendContactMessage(formData);
-      toast.success("Thank you! Your message has been sent to Rajiv. We will reply shortly!");
+      toast.success("Thank you! Your message has been sent to Aurafit coach Rajiv. We will reply shortly!");
       setFormData({
         name: "",
         phone: "",
@@ -75,7 +75,7 @@ const Contact = ({ onConsultationOpen }) => {
             viewport={{ once: true }}
           >
             <span></span>
-            GET IN TOUCH
+            CONNECT WITH AURAFIT
           </motion.div>
 
           <div className="contact-heading-row">
@@ -141,8 +141,8 @@ const Contact = ({ onConsultationOpen }) => {
               </h3>
 
               <p>
-                You can contact Rajiv directly or use the form
-                to send your details.
+                Reach out directly to coach Rajiv Dalal at Aurafit or submit the form
+                to receive customized guidance.
               </p>
 
             </div>
@@ -253,9 +253,9 @@ const Contact = ({ onConsultationOpen }) => {
                 Tell us what you need
               </h3>
 
-              <p>
-                Leave your details and a short message.
-              </p>
+                <p>
+                  Leave your details and Rajiv will get back to you personally.
+                </p>
             </div>
 
 

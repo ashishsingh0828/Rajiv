@@ -106,7 +106,7 @@ const programData = [
     icon: "dumbbell",
 
     name: "Personal Training",
-    subtitle: "Train directly with Rajiv",
+    subtitle: "Train directly with coach Rajiv in Bahadurgarh",
 
     oldPrice: 6999,
     price: 4999,
@@ -229,7 +229,7 @@ const Programs = ({ onBookProgram, onConsultationOpen }) => {
           >
             <span></span>
 
-            COACHING PROGRAMS
+            AURAFIT COACHING PLANS
           </motion.div>
 
 
@@ -282,9 +282,8 @@ const Programs = ({ onBookProgram, onConsultationOpen }) => {
               }}
             >
               <p>
-                Start online from anywhere or train with Rajiv
-                in person. Choose the level of support that
-                fits you.
+                Start with Aurafit online coaching from anywhere, or train with Rajiv
+                in person in Bahadurgarh. Choose the tier that matches your goals.
               </p>
 
 
@@ -699,8 +698,8 @@ const Programs = ({ onBookProgram, onConsultationOpen }) => {
             </span>
 
             <p>
-              Not sure which program is right for you?
-              Start with a free consultation.
+              Not sure which plan matches your goals and schedule?
+              Book a free assessment with Rajiv.
             </p>
 
           </div>

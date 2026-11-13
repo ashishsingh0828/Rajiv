@@ -1,24 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap");
 
 :root {
-  /* Brand */
-  --primary: #c6ff00;
-  --primary-hover: #b2e600;
+  /* Brand - Aurafit Emerald & Neon Mint */
+  --primary: #00e575;
+  --primary-hover: #00c865;
+  --primary-rgb: 0, 229, 117;
+  --primary-glow: rgba(0, 229, 117, 0.28);
+  --primary-subtle: rgba(0, 229, 117, 0.08);
 
   /* Background */
-  --black: #080808;
-  --dark: #101010;
-  --dark-soft: #171717;
-  --surface: #1d1d1d;
+  --black: #090a0e;
+  --dark: #101319;
+  --dark-soft: #161b23;
+  --surface: #1d232e;
 
   /* Text */
   --white: #ffffff;
-  --off-white: #f4f1e8;
-  --text: #d0d0d0;
-  --muted: #8a8a8a;
+  --off-white: #f5f6f8;
+  --text: #d4d8e2;
+  --muted: #8d95a5;
 
   /* Other */
-  --border: rgba(255, 255, 255, 0.12);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-active: rgba(0, 229, 117, 0.35);
 
   --font-heading: "Oswald", sans-serif;
   --font-body: "Inter", sans-serif;
