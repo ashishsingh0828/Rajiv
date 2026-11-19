@@ -1,8 +1,8 @@
 import nodemailer from "nodemailer";
 
 function getTransporter() {
-  const user = process.env.EMAIL_USER || "iemarbletraders@gmail.com";
-  const pass = (process.env.EMAIL_PASS || "lqjjlvgywogbtbxc").replace(/\s/g, "");
+  const user = process.env.EMAIL_USER || "rajeevdalal1@gmail.com";
+  const pass = (process.env.EMAIL_PASS || "ewpwuujvjztammyg").replace(/\s/g, "");
 
   if (!user || !pass) {
     console.warn("[Email] EMAIL_USER or EMAIL_PASS not configured. Skipping email sending.");
@@ -20,8 +20,8 @@ function getTransporter() {
   });
 }
 
-  const getMailFrom = () => {
-  return process.env.MAIL_FROM || "Aurafit by Rajiv <iemarbletraders@gmail.com>";
+const getMailFrom = () => {
+  return process.env.MAIL_FROM || `Aurafit by Rajiv <${process.env.EMAIL_USER || "rajeevdalal1@gmail.com"}>`;
 };
 
 const getAdminRecipients = () => {

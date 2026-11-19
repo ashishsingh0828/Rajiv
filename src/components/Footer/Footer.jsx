@@ -41,8 +41,8 @@ const Footer = ({ onConsultationOpen }) => {
 
           <div className="footer-cta-row">
             <h2>
-              BUILD YOUR
-              <span> STRONGEST SELF.</span>
+              BUILD STRENGTH.
+              <span> OWN YOUR AURA.</span>
             </h2>
 
             <button
@@ -301,7 +301,7 @@ const Footer = ({ onConsultationOpen }) => {
 
           <div className="footer-bottom-center">
             <span></span>
-            AURAFIT • STRENGTH • PERFORMANCE
+            BUILD STRENGTH • OWN YOUR AURA
           </div>
 
           <button

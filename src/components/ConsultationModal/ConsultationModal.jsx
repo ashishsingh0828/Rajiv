@@ -231,7 +231,7 @@ const ConsultationModal = ({ isOpen, onClose }) => {
             <span className="consultation-sidebar-line"></span>
 
             <p>
-              AURAFIT • PERFORMANCE • STRENGTH
+              BUILD STRENGTH • OWN YOUR AURA
             </p>
 
           </div>

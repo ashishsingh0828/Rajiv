@@ -25,7 +25,7 @@ const videoData = [
     thumbnail: "/images/videos/rajiv-video-1.jpg",
     videoSource: "/videos/rajiv-training-1.mp4",
     featured: true,
-    description: "Watch Rajiv execute a heavy deadlift platform session at Cult.sport gym with proper hip hinge, lat engagement, and foot rooting.",
+    description: "Watch coach Rajiv execute a heavy deadlift platform session at Cult.sport gym with proper hip hinge, lat engagement, and foot rooting.",
   },
   {
     id: 2,
@@ -39,23 +39,23 @@ const videoData = [
   },
   {
     id: 3,
-    title: "Progressive Overload Without Lower Back Strain",
-    category: "Injury Prevention",
-    duration: "00:48",
-    thumbnail: "/images/transformations/rajiv-strength-before.jpg",
-    videoSource: "/videos/rajiv-training-1.mp4",
+    title: "Athletic Power & Dynamic Conditioning Session",
+    category: "Athletic Conditioning",
+    duration: "00:08",
+    thumbnail: "/images/videos/rajiv-video-3.jpg",
+    videoSource: "/videos/rajiv-training-3.mp4",
     featured: false,
-    description: "How to safely scale weight and volume week over week without risking joint fatigue or spine rounding.",
+    description: "High-intensity functional gym training focused on athletic stamina, core activation, and explosive movement power.",
   },
   {
     id: 4,
-    title: "Indian Diet & Macro Adjustments for Real Strength",
-    category: "Nutrition Coaching",
-    duration: "00:30",
-    thumbnail: "/images/transformations/rajiv-deadlift-after.jpg",
-    videoSource: "/videos/rajiv-training-2.mp4",
+    title: "Progressive Overload & Muscular Hypertrophy",
+    category: "Muscle & Hypertrophy",
+    duration: "00:08",
+    thumbnail: "/images/videos/rajiv-video-4.jpg",
+    videoSource: "/videos/rajiv-training-4.mp4",
     featured: false,
-    description: "Simple, sustainable nutrition guidance built around everyday North Indian home meals, curd, paneer, and balanced calories.",
+    description: "Smart progressive overload methods to build dense muscular strength and joint stability without lower back strain.",
   },
 ];
 
@@ -217,7 +217,7 @@ const Videos = ({ onConsultationOpen }) => {
           transition={{ duration: 0.6 }}
         >
           <div className="videos-bottom-copy">
-            <span>WANT DIRECT 1-TO-1 COACHING?</span>
+            <span>BUILD STRENGTH. OWN YOUR AURA.</span>
             <h3>
               VIDEOS SHOW TECHNIQUE.
               <strong> COACHING TRANSFORMS YOU.</strong>
@@ -263,6 +263,7 @@ const Videos = ({ onConsultationOpen }) => {
               <div className="video-modal-player-wrap">
                 <video
                   src={activeVideo.videoSource}
+                  poster={activeVideo.thumbnail}
                   controls
                   autoPlay
                   playsInline

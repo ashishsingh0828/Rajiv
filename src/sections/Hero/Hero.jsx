@@ -41,7 +41,7 @@ const Hero = ({ onConsultationOpen }) => {
 
       {/* DECORATIVE SIDE TEXT */}
       <div className="hero-side-label">
-        AURAFIT • STRENGTH • LIFESTYLE
+        BUILD STRENGTH • OWN YOUR AURA
       </div>
 
 
@@ -67,7 +67,7 @@ const Hero = ({ onConsultationOpen }) => {
             }}
           >
             <span className="hero-eyebrow-dot"></span>
-            Aurafit Personal Fitness Coaching
+            Build Strength. Own Your Aura.
           </motion.div>
 
 
@@ -86,16 +86,16 @@ const Hero = ({ onConsultationOpen }) => {
               ease: [0.16, 1, 0.3, 1],
             }}
           >
-            GET STRONGER.
+            BUILD STRENGTH.
             <br />
 
             <span>
-              FEEL BETTER.
+              OWN YOUR
             </span>
 
             <br />
 
-            LIVE BETTER.
+            AURA.
           </motion.h1>
 
 
@@ -277,8 +277,8 @@ const Hero = ({ onConsultationOpen }) => {
             </h3>
 
             <p>
-              Strength. Nutrition.
-              Lifestyle.
+              Build Strength.
+              Own Your Aura.
             </p>
 
           </div>

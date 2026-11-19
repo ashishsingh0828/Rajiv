@@ -45,14 +45,11 @@ const transformationData = [
     result: "-12 KG",
     resultType: "loss",
 
-    beforeImage:
-      "/images/transformations/rajiv-strength-before.jpg",
-
-    afterImage:
-      "/images/transformations/rajiv-strength-after.jpg",
+    beforeImage: "/images/transformations/amit-before.jpg",
+    afterImage: "/images/transformations/amit-after.jpg",
 
     description:
-      "Went from struggling with deadlift setups and back pain to pulling with flawless form and shedding 12 kg.",
+      "Went from struggling with belly fat and low stamina to lean athletic shape with structured strength training and high-protein home food.",
 
     featured: true,
   },
@@ -66,14 +63,11 @@ const transformationData = [
     result: "+6 KG Muscle",
     resultType: "gain",
 
-    beforeImage:
-      "/images/transformations/rajiv-deadlift-before.jpg",
-
-    afterImage:
-      "/images/transformations/rajiv-deadlift-after.jpg",
+    beforeImage: "/images/transformations/rahul-before.jpg",
+    afterImage: "/images/transformations/rahul-after.jpg",
 
     description:
-      "Focused compound lifting, progressive overload and structured nutrition helped him add 6kg lean mass.",
+      "Focused compound lifting, progressive overload and structured Indian nutrition helped him add 6kg clean muscular bulk.",
 
     featured: false,
   },
@@ -82,19 +76,16 @@ const transformationData = [
     id: 3,
     name: "Karan Dahiya",
     location: "Bahadurgarh, Haryana",
-    goal: "Body Recomposition",
+    goal: "Body Recomposition & Core",
     duration: "18 Weeks",
     result: "-9 KG",
     resultType: "loss",
 
-    beforeImage:
-      "/images/transformations/rajiv-strength-before.jpg",
-
-    afterImage:
-      "/images/transformations/rajiv-deadlift-after.jpg",
+    beforeImage: "/images/transformations/karan-before.jpg",
+    afterImage: "/images/transformations/karan-after.jpg",
 
     description:
-      "A consistent 1:1 training routine with Rajiv in Bahadurgarh made him leaner, confident, and injury-free.",
+      "A consistent 1:1 training routine with Rajiv in Bahadurgarh made him leaner, chiseled, confident, and injury-free.",
 
     featured: false,
   },
@@ -108,14 +99,11 @@ const transformationData = [
     result: "-15 KG",
     resultType: "loss",
 
-    beforeImage:
-      "/images/transformations/rajiv-deadlift-before.jpg",
-
-    afterImage:
-      "/images/transformations/rajiv-strength-after.jpg",
+    beforeImage: "/images/transformations/manish-before.jpg",
+    afterImage: "/images/transformations/manish-after.jpg",
 
     description:
-      "No crash diets or hours of mindless cardio. Just heavy smart lifting and realistic Indian home meals.",
+      "No crash diets or exhausting cardio. Just smart progressive lifting, accountability, and daily habits tailored to Indian lifestyle.",
 
     featured: false,
   },
@@ -577,7 +565,7 @@ const Transformations = ({
           <div className="transformations-bottom-copy">
 
             <span>
-              YOUR TURN
+              BUILD STRENGTH. OWN YOUR AURA.
             </span>
 
             <h3>

@@ -27,5 +27,4 @@ dist-ssr
 *.sw?
 
 # Video media files (served via CDN/cloud or hosted externally to keep git repository compact under 100MB)
-public/videos/rajiv-training-1.mp4
-public/videos/rajiv-training-2.mp4
+public/videos/*.mp4

@@ -268,7 +268,7 @@ const Header = ({ onConsultationOpen }) => {
               >
 
                 <p>
-                  Aurafit by Rajiv • Fitness &amp; Strength Coaching
+                  Build Strength. Own Your Aura.
                 </p>
 
 

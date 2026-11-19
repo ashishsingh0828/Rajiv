@@ -231,12 +231,12 @@ const About = ({ onConsultationOpen }) => {
               </span>
 
               <p>
-                The best fitness plan is the one you can keep following when
-                life gets busy.
+                Build strength. Own your aura. The best fitness plan is the one
+                you can stay consistent with when life gets busy.
               </p>
 
               <span className="about-quote-author">
-                — Rajiv
+                — Rajiv Dalal
               </span>
             </div>
 

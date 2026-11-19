@@ -227,7 +227,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
 
           <div className="booking-summary-bottom">
             <ShieldCheck size={16} />
-            <span>Secure booking • Aurafit by Rajiv</span>
+            <span>Build Strength. Own Your Aura.</span>
           </div>
         </aside>
 
