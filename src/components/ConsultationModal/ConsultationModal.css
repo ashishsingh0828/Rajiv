@@ -946,6 +946,163 @@
   text-align: center;
 }
 
+/* =========================================================
+   CONFIRMATION RECEIPT VIEW
+========================================================= */
+
+.consultation-success-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px 0;
+  animation: consultationModalIn 0.4s ease;
+}
+
+.consultation-success-badge {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 229, 117, 0.15);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  border-radius: 50%;
+  margin-bottom: 12px;
+  box-shadow: 0 0 30px rgba(0, 229, 117, 0.25);
+}
+
+.consultation-success-kicker {
+  display: block;
+  color: var(--primary);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+
+.consultation-success-box h3 {
+  margin: 0 0 8px 0;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.consultation-success-desc {
+  max-width: 440px;
+  color: #9ea5b5;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0 0 20px 0;
+}
+
+.consultation-receipt-card {
+  width: 100%;
+  max-width: 440px;
+  background: #0e1219;
+  border: 1px solid rgba(0, 229, 117, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.consultation-receipt-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 12.5px;
+}
+
+.consultation-receipt-row:last-child {
+  border-bottom: none;
+}
+
+.consultation-receipt-row span {
+  color: #7b8396;
+}
+
+.consultation-receipt-row strong {
+  color: #ffffff;
+}
+
+.consultation-ref-code {
+  font-family: monospace;
+  color: #38bdf8 !important;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.consultation-success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.consultation-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px;
+  background: #25d366;
+  color: #ffffff;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 12.5px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.consultation-wa-btn:hover {
+  background: #1ebc59;
+  transform: translateY(-2px);
+}
+
+.consultation-copy-btn,
+.consultation-done-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.consultation-copy-btn {
+  background: #161b26;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.consultation-copy-btn:hover {
+  background: #202737;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.consultation-done-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #7d8495;
+}
+
+.consultation-done-btn:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
 
 /* =========================================================
    ANIMATIONS

@@ -92,6 +92,12 @@ export async function sendBookingNotifications(booking) {
             <td style="padding: 6px 0; color: #8c92a2;">Transaction ID:</td>
             <td style="padding: 6px 0; color: #ffd166; font-family: monospace; font-size: 14px; font-weight: bold;">${esc(booking.transactionId || "Not provided")}</td>
           </tr>
+          ${booking.paymentScreenshot ? `
+          <tr>
+            <td style="padding: 6px 0; color: #8c92a2;">Screenshot Attached:</td>
+            <td style="padding: 6px 0; color: #00e575; font-weight: bold;">Yes (Included with booking)</td>
+          </tr>
+          ` : ""}
         </table>
       </div>
 

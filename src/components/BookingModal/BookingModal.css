@@ -1701,63 +1701,505 @@
   font-weight: 600;
 }
 
-.booking-field-hint {
-  display: block;
-  margin-top: 5px;
-  font-size: 10px;
-  color: #888e9d;
-}
-
 /* =========================================================
-   SUCCESS VIEW (STEP 3)
+   STEP 2 GUIDE & UTR ENHANCEMENTS
 ========================================================= */
 
-.booking-success-view {
+.phonepe-guide-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 10px 0;
-  animation: bookingModalIn 0.4s ease;
+  gap: 10px;
+  background: #0d1017;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 16px 0;
 }
 
-.booking-success-badge {
-  width: 64px;
-  height: 64px;
+.phonepe-guide-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.phonepe-guide-num {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
   display: grid;
   place-items: center;
-  background: rgba(0, 229, 117, 0.15);
-  border: 1px solid var(--primary);
-  color: var(--primary);
+  background: var(--primary);
+  color: #000;
   border-radius: 50%;
-  margin-bottom: 14px;
-  box-shadow: 0 0 35px rgba(0, 229, 117, 0.3);
+  font-size: 11px;
+  font-weight: 800;
 }
 
-.booking-success-kicker {
-  display: block;
+.phonepe-guide-step p {
+  margin: 0;
+  font-size: 11.5px;
+  color: #adb3c2;
+  line-height: 1.45;
+}
+
+.phonepe-guide-step code {
   color: var(--primary);
-  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+}
+
+.booking-field-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 6px;
 }
 
-.booking-success-view h3 {
-  margin: 0 0 10px 0;
+.booking-field-top-row label {
+  margin-bottom: 0 !important;
+}
+
+.booking-utr-help-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  color: #7d8597;
+  font-size: 10.5px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.booking-utr-help-btn:hover {
+  color: var(--primary);
+}
+
+.booking-input-with-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.booking-input-with-action .booking-input {
+  flex: 1;
+}
+
+.booking-paste-btn {
+  height: 51px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #151a24;
+  border: 1px solid rgba(0, 229, 117, 0.35);
+  color: var(--primary);
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.booking-paste-btn:hover {
+  background: var(--primary);
+  color: #000;
+  border-color: var(--primary);
+  box-shadow: 0 0 14px rgba(0, 229, 117, 0.3);
+}
+
+.booking-utr-valid-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.booking-utr-help-card {
+  margin-top: 8px;
+  padding: 12px 14px;
+  background: #11141d;
+  border-left: 3px solid var(--primary);
+  border-radius: 6px;
+  font-size: 11px;
+  color: #a4abbd;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.booking-utr-help-card strong {
+  color: #fff;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.booking-utr-help-card ul {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.booking-screenshot-area {
+  margin-top: 4px;
+}
+
+.booking-upload-screenshot-btn {
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #0e1118;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  color: #8c93a4;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.booking-upload-screenshot-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(0, 229, 117, 0.04);
+}
+
+.booking-screenshot-preview {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: #141722;
+  border: 1px solid rgba(0, 229, 117, 0.3);
+  border-radius: 8px;
+}
+
+.booking-screenshot-preview img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.booking-remove-screenshot {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  color: #ef4444;
+  border: none;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.booking-remove-screenshot:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   OFFICIAL PRINTABLE RECEIPT CARD (STEP 3)
+========================================================= */
+
+.official-receipt-card {
+  width: 100%;
+  max-width: 500px;
+  background: #0d1017;
+  border: 1px solid rgba(0, 229, 117, 0.28);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 229, 117, 0.1);
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin: 18px 0;
+  text-align: left;
+}
+
+.receipt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.receipt-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.receipt-logo-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 229, 117, 0.4);
+  flex-shrink: 0;
+}
+
+.receipt-logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.receipt-brand-row h4 {
+  margin: 0;
   color: #ffffff;
   font-family: var(--font-heading);
-  font-size: 32px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+.receipt-tagline {
+  display: block;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--primary);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.receipt-badge-pill {
+  padding: 4px 10px;
+  background: rgba(0, 229, 117, 0.12);
+  border: 1px solid rgba(0, 229, 117, 0.35);
+  border-radius: 100px;
+  color: var(--primary);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-.booking-success-lead {
-  max-width: 480px;
-  color: #a1a6b4;
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 0 0 24px 0;
+.receipt-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 14px 0;
 }
+
+.receipt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.receipt-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.receipt-lbl {
+  font-size: 9px;
+  color: #7b8394;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.receipt-val {
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.receipt-code {
+  font-family: monospace;
+  color: #38bdf8 !important;
+  font-weight: 700;
+}
+
+.receipt-subval {
+  font-size: 11px;
+  color: #9299ab;
+}
+
+.receipt-table {
+  background: #11151f;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.receipt-table-header {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  font-size: 8.5px;
+  color: #6c7486;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.receipt-table-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  align-items: center;
+  font-size: 13px;
+}
+
+.receipt-table-row strong {
+  color: #ffffff;
+  display: block;
+}
+
+.receipt-table-row p {
+  margin: 2px 0 0 0;
+  font-size: 10px;
+  color: #8c93a5;
+}
+
+.receipt-mode-pill {
+  display: inline-block;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  font-size: 10px;
+  color: #cfd4e2;
+}
+
+.receipt-amount-highlight {
+  color: var(--primary) !important;
+  font-size: 18px;
+  font-family: var(--font-heading);
+}
+
+.receipt-utr-code {
+  font-family: monospace;
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.receipt-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+}
+
+.receipt-coach-stamp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.receipt-verified-icon {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.receipt-coach-stamp strong {
+  display: block;
+  font-size: 11px;
+  color: #ffffff;
+}
+
+.receipt-coach-stamp small {
+  display: block;
+  font-size: 9.5px;
+  color: #8890a2;
+}
+
+.receipt-status-confirmed {
+  padding: 4px 10px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid #10b981;
+  color: #10b981;
+  border-radius: 4px;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.receipt-action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 12px;
+}
+
+.receipt-btn-print,
+.receipt-btn-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.receipt-btn-print {
+  background: #181d28;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.receipt-btn-print:hover {
+  background: #232a3a;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.receipt-btn-copy {
+  background: #181d28;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.receipt-btn-copy:hover {
+  background: #232a3a;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Print Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-receipt,
+  #printable-receipt * {
+    visibility: visible;
+  }
+  #printable-receipt {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 100%;
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+    box-shadow: none !important;
+    padding: 24px !important;
+  }
+  #printable-receipt .receipt-tagline,
+  #printable-receipt .receipt-amount-highlight,
+  #printable-receipt .receipt-utr-code,
+  #printable-receipt .receipt-badge-pill {
+    color: #000000 !important;
+  }
+}
+
 
 .booking-receipt-box {
   width: 100%;

@@ -6,6 +6,9 @@ import {
   Send,
   MessageCircle,
   Loader2,
+  CheckCircle2,
+  Sparkles,
+  RotateCcw,
 } from "lucide-react";
 
 import { motion } from "motion/react";
@@ -23,6 +26,7 @@ const Contact = ({ onConsultationOpen }) => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedData, setSubmittedData] = useState(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,6 +45,11 @@ const Contact = ({ onConsultationOpen }) => {
       setIsSubmitting(true);
       await sendContactMessage(formData);
       toast.success("Thank you! Your message has been sent to Aurafit coach Rajiv. We will reply shortly!");
+      setSubmittedData({
+        ...formData,
+        refId: `MSG-${Date.now().toString(36).toUpperCase()}`,
+        time: new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" }),
+      });
       setFormData({
         name: "",
         phone: "",
@@ -246,110 +255,142 @@ const Contact = ({ onConsultationOpen }) => {
             }}
           >
 
-            <div className="contact-form-heading">
-              <span>SEND A MESSAGE</span>
-
-              <h3>
-                Tell us what you need
-              </h3>
-
-                <p>
-                  Leave your details and Rajiv will get back to you personally.
+            {submittedData ? (
+              <div className="contact-success-box">
+                <div className="contact-success-badge">
+                  <Sparkles size={26} />
+                </div>
+                <span className="contact-success-kicker">MESSAGE SENT DIRECTLY TO RAJIV</span>
+                <h3>Message Received!</h3>
+                <p className="contact-success-desc">
+                  Thank you, <strong>{submittedData.name}</strong>. Your inquiry has been forwarded directly to Rajiv Dalal's inbox. Rajiv will get in touch with you shortly.
                 </p>
-            </div>
 
+                <div className="contact-receipt-card">
+                  <div className="contact-receipt-row">
+                    <span>Reference ID</span>
+                    <strong className="contact-ref-code">{submittedData.refId}</strong>
+                  </div>
+                  <div className="contact-receipt-row">
+                    <span>Time Received</span>
+                    <span>{submittedData.time}</span>
+                  </div>
+                  <div className="contact-receipt-row">
+                    <span>Phone / WhatsApp</span>
+                    <strong>{submittedData.phone}</strong>
+                  </div>
+                  <div className="contact-receipt-row">
+                    <span>Email</span>
+                    <strong>{submittedData.email}</strong>
+                  </div>
+                </div>
 
-            <form
-              className="contact-form"
-              onSubmit={handleSubmit}
-            >
+                <div className="contact-success-actions">
+                  <a
+                    href={`https://wa.me/919996889494?text=${encodeURIComponent(
+                      `Hi Rajiv! I just submitted a message on Aurafit website (Ref: ${submittedData.refId}). Can we connect?`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-wa-btn"
+                  >
+                    <MessageCircle size={17} />
+                    <span>Connect on WhatsApp Instantly</span>
+                  </a>
 
-              <div className="contact-field">
-                <label htmlFor="contact-name">
-                  Full Name
-                </label>
-
-                <input
-                  id="contact-name"
-                  type="text"
-                  name="name"
-                  placeholder="Your full name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
+                  <button
+                    type="button"
+                    className="contact-reset-btn"
+                    onClick={() => setSubmittedData(null)}
+                  >
+                    <RotateCcw size={14} />
+                    <span>Send Another Message</span>
+                  </button>
+                </div>
               </div>
+            ) : (
+              <>
+                <div className="contact-form-heading">
+                  <span>SEND A MESSAGE</span>
+                  <h3>Tell us what you need</h3>
+                  <p>Leave your details and Rajiv will get back to you personally.</p>
+                </div>
 
-
-              <div className="contact-field">
-                <label htmlFor="contact-phone">
-                  Phone
-                </label>
-
-                <input
-                  id="contact-phone"
-                  type="tel"
-                  name="phone"
-                  placeholder="+91 XXXXX XXXXX"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-
-              <div className="contact-field contact-full">
-                <label htmlFor="contact-email">
-                  Email
-                </label>
-
-                <input
-                  id="contact-email"
-                  type="email"
-                  name="email"
-                  placeholder="your@email.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-
-              <div className="contact-field contact-full">
-                <label htmlFor="contact-message">
-                  Message
-                </label>
-
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  rows="5"
-                  placeholder="Tell us about your goal or question..."
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-
-              <div className="contact-full">
-                <button
-                  type="submit"
-                  className="contact-submit"
-                  disabled={isSubmitting}
-                  style={isSubmitting ? { opacity: 0.7, cursor: "not-allowed" } : {}}
+                <form
+                  className="contact-form"
+                  onSubmit={handleSubmit}
                 >
-                  <span>
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </span>
+                  <div className="contact-field">
+                    <label htmlFor="contact-name">Full Name</label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      name="name"
+                      placeholder="Your full name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-                  <span>
-                    {isSubmitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
-                  </span>
-                </button>
-              </div>
+                  <div className="contact-field">
+                    <label htmlFor="contact-phone">Phone</label>
+                    <input
+                      id="contact-phone"
+                      type="tel"
+                      name="phone"
+                      placeholder="+91 XXXXX XXXXX"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-            </form>
+                  <div className="contact-field contact-full">
+                    <label htmlFor="contact-email">Email</label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      name="email"
+                      placeholder="your@email.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="contact-field contact-full">
+                    <label htmlFor="contact-message">Message</label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      rows="5"
+                      placeholder="Tell us about your goal or question..."
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="contact-full">
+                    <button
+                      type="submit"
+                      className="contact-submit"
+                      disabled={isSubmitting}
+                      style={isSubmitting ? { opacity: 0.7, cursor: "not-allowed" } : {}}
+                    >
+                      <span>
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </span>
+
+                      <span>
+                        {isSubmitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
+                      </span>
+                    </button>
+                  </div>
+                </form>
+              </>
+            )}
 
           </motion.div>
 

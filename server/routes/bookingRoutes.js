@@ -19,6 +19,7 @@ router.post("/", async (req, res) => {
       billingText,
       transactionId,
       notes,
+      paymentScreenshot,
     } = req.body;
 
     if (!name || !email || !phone || !programName || !amount) {
@@ -42,6 +43,7 @@ router.post("/", async (req, res) => {
       upiId: "9996889494@ybl",
       payeeName: "Rajiv Dalal",
       transactionId: transactionId ? transactionId.trim() : "",
+      paymentScreenshot: paymentScreenshot || "",
       paymentStatus: "pending_verification",
       notes: notes ? notes.trim() : "",
     });
@@ -66,7 +68,11 @@ router.post("/", async (req, res) => {
         programName: booking.programName,
         amount: booking.amount,
         mode: booking.mode,
+        billingText: booking.billingText,
+        upiId: booking.upiId,
+        payeeName: booking.payeeName,
         transactionId: booking.transactionId,
+        paymentScreenshot: booking.paymentScreenshot,
         paymentStatus: booking.paymentStatus,
         createdAt: booking.createdAt,
       },

@@ -1,18 +1,23 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import {
   ArrowLeft,
   ArrowUpRight,
   Check,
+  CheckCircle2,
   Copy,
   ExternalLink,
+  HelpCircle,
+  Image as ImageIcon,
   Loader2,
   Mail,
   MapPin,
   MessageCircle,
   Phone,
+  Printer,
   QrCode,
   ShieldCheck,
   Sparkles,
+  Trash2,
   User,
   X,
 } from "lucide-react";
@@ -30,6 +35,8 @@ const BookingModal = ({ isOpen, onClose, program }) => {
   const [copied, setCopied] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingResult, setBookingResult] = useState(null);
+  const [showUtrHelp, setShowUtrHelp] = useState(false);
+  const fileInputRef = useRef(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -37,6 +44,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
     phone: "",
     notes: "",
     transactionId: "",
+    screenshot: "",
   });
 
   useEffect(() => {
@@ -64,6 +72,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
       setStep(1);
       setBookingResult(null);
       setCopied(false);
+      setShowUtrHelp(false);
     }
   }, [isOpen]);
 
@@ -78,8 +87,22 @@ const BookingModal = ({ isOpen, onClose, program }) => {
     return `upi://pay?pa=${UPI_ID}&pn=${name}&am=${finalPrice}&cu=INR&tn=${note}`;
   }, [finalPrice, program]);
 
+  // Clean UTR check
+  const isUtrValid = useMemo(() => {
+    const clean = formData.transactionId.replace(/\D/g, "");
+    return clean.length === 12;
+  }, [formData.transactionId]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
+    // Auto-clean UTR if pasted with spaces or letters
+    if (name === "transactionId") {
+      const match12 = value.match(/\b\d{12}\b/);
+      if (match12 && value.length > 12) {
+        setFormData((prev) => ({ ...prev, transactionId: match12[0] }));
+        return;
+      }
+    }
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -90,11 +113,51 @@ const BookingModal = ({ isOpen, onClose, program }) => {
     try {
       await navigator.clipboard.writeText(UPI_ID);
       setCopied(true);
-      toast.success("UPI ID copied to clipboard: 9996889494@ybl");
+      toast.success("UPI ID copied: 9996889494@ybl");
       setTimeout(() => setCopied(false), 2500);
     } catch {
       toast.info("UPI ID: 9996889494@ybl");
     }
+  };
+
+  const handlePasteUtr = async () => {
+    try {
+      if (!navigator.clipboard?.readText) {
+        toast.info("Please paste using Ctrl+V or long-press.");
+        return;
+      }
+      const text = await navigator.clipboard.readText();
+      if (text) {
+        const match = text.match(/\b\d{12}\b/);
+        const clean = match ? match[0] : text.trim();
+        setFormData((prev) => ({ ...prev, transactionId: clean }));
+        toast.success(`Pasted UTR: ${clean}`);
+      } else {
+        toast.info("Clipboard is empty.");
+      }
+    } catch {
+      toast.info("Please paste using Ctrl+V or long-press.");
+    }
+  };
+
+  const handleScreenshotChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Please upload an image under 5MB.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setFormData((prev) => ({ ...prev, screenshot: reader.result }));
+      toast.success("Payment receipt screenshot attached!");
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleRemoveScreenshot = () => {
+    setFormData((prev) => ({ ...prev, screenshot: "" }));
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const handleDetailsSubmit = (event) => {
@@ -129,6 +192,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
         amount: finalPrice,
         billingText: program?.billingText,
         transactionId: formData.transactionId,
+        paymentScreenshot: formData.screenshot,
         notes: formData.notes,
       };
 
@@ -136,7 +200,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
 
       setBookingResult(res.booking);
       setStep(3);
-      toast.success("Payment confirmed & booking saved! Confirmation email sent via Aurafit.");
+      toast.success("Payment confirmed & enrollment receipt generated!");
     } catch (error) {
       console.error("Payment submission error:", error);
       toast.error(
@@ -145,6 +209,44 @@ const BookingModal = ({ isOpen, onClose, program }) => {
       );
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handlePrintReceipt = () => {
+    window.print();
+  };
+
+  const handleCopyReceipt = async () => {
+    const text = `=========================================
+AURAFIT BY RAJIV - OFFICIAL ENROLLMENT RECEIPT
+Tagline: Build Strength. Own Your Aura.
+=========================================
+Booking Reference : ${bookingResult?.bookingId || "RJV-" + Date.now().toString(36).toUpperCase()}
+Date & Time       : ${new Date(bookingResult?.createdAt || Date.now()).toLocaleString("en-IN")}
+Status            : PAYMENT VERIFIED & ENROLLED
+
+CLIENT DETAILS
+Name              : ${bookingResult?.name || formData.name}
+Phone             : ${bookingResult?.phone || formData.phone}
+Email             : ${bookingResult?.email || formData.email}
+
+COACHING PLAN
+Plan              : ${bookingResult?.programName || program?.name}
+Type              : ${(bookingResult?.mode || program?.mode) === "offline" ? "In-Person (Bahadurgarh)" : "Online Coaching"}
+Amount Paid       : ₹${(bookingResult?.amount || finalPrice).toLocaleString("en-IN")}
+Payment Method    : PhonePe UPI (${UPI_ID})
+Payee             : Rajiv Dalal
+UPI Reference/UTR : ${bookingResult?.transactionId || formData.transactionId}
+
+HEAD COACH
+Coach Rajiv Dalal (+91 99968 89494)
+Bahadurgarh, Haryana & Online Worldwide
+=========================================`;
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success("Receipt details copied to clipboard!");
+    } catch {
+      toast.info("Receipt ready.");
     }
   };
 
@@ -265,7 +367,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                 <span>02</span>
                 <div>
                   <strong>PhonePe Pay</strong>
-                  <small>Scan & verify</small>
+                  <small>Scan & Paste UTR</small>
                 </div>
               </div>
 
@@ -276,8 +378,8 @@ const BookingModal = ({ isOpen, onClose, program }) => {
               <div className={`booking-step ${step >= 3 ? "active" : ""}`}>
                 <span>03</span>
                 <div>
-                  <strong>Confirmed</strong>
-                  <small>Receipt</small>
+                  <strong>Receipt</strong>
+                  <small>Download/Print</small>
                 </div>
               </div>
             </div>
@@ -288,16 +390,16 @@ const BookingModal = ({ isOpen, onClose, program }) => {
             {step === 1 && (
               <div className="booking-step-content">
                 <div className="booking-heading">
-                  <span>STEP 1 OF 2</span>
+                  <span>STEP 1 OF 3 • YOUR DETAILS</span>
                   <h3>Tell us about yourself</h3>
                   <p>
-                    Enter your details to proceed to the PhonePe scanner payment.
+                    Enter your contact information to begin coaching enrollment.
                   </p>
                 </div>
 
                 <form className="booking-form" onSubmit={handleDetailsSubmit}>
                   <div className="booking-field">
-                    <label htmlFor="booking-name">Full Name</label>
+                    <label htmlFor="booking-name">Full Name *</label>
                     <div className="booking-input">
                       <User size={17} />
                       <input
@@ -313,7 +415,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                   </div>
 
                   <div className="booking-field">
-                    <label htmlFor="booking-phone">Phone Number</label>
+                    <label htmlFor="booking-phone">Phone / WhatsApp *</label>
                     <div className="booking-input">
                       <Phone size={17} />
                       <input
@@ -329,7 +431,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                   </div>
 
                   <div className="booking-field booking-full">
-                    <label htmlFor="booking-email">Email Address</label>
+                    <label htmlFor="booking-email">Email Address (For Receipt) *</label>
                     <div className="booking-input">
                       <Mail size={17} />
                       <input
@@ -346,7 +448,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
 
                   <div className="booking-field booking-full">
                     <label htmlFor="booking-notes">
-                      Any specific fitness goals or health conditions (optional)
+                      Current fitness goals or injuries (Optional)
                     </label>
                     <div className="booking-input">
                       <input
@@ -355,7 +457,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                         name="notes"
                         value={formData.notes}
                         onChange={handleChange}
-                        placeholder="e.g. Muscle building, fat loss, shoulder issue..."
+                        placeholder="e.g. Fat loss, deadlift form, shoulder mobility..."
                       />
                     </div>
                   </div>
@@ -366,8 +468,8 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                       <strong>{program.name}</strong>
                       <small>
                         {program.mode === "offline"
-                          ? "Offline Coaching (Bahadurgarh)"
-                          : "Online Coaching"}
+                          ? "Offline Coaching (Bahadurgarh Hub)"
+                          : "Online Coaching (Global 1-on-1)"}
                       </small>
                     </div>
 
@@ -379,7 +481,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
 
                   <div className="booking-full">
                     <button type="submit" className="booking-continue-btn">
-                      <span>Continue To PhonePe Payment</span>
+                      <span>Proceed To PhonePe Scanner</span>
                       <span>
                         <ArrowUpRight size={18} />
                       </span>
@@ -390,7 +492,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
             )}
 
             {/* =================================================
-                STEP 2: PHONEPE SCANNER & PAYMENT
+                STEP 2: PHONEPE SCANNER & PAYMENT VERIFICATION
             ================================================== */}
             {step === 2 && (
               <div className="booking-step-content">
@@ -401,18 +503,17 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                   disabled={isSubmitting}
                 >
                   <ArrowLeft size={15} />
-                  Edit details
+                  Back to details
                 </button>
 
                 <div className="booking-heading">
                   <span className="booking-phonepe-badge">
                     <QrCode size={13} />
-                    PHONEPE UPI SCANNER
+                    STEP 2 OF 3 • SCAN &amp; PASTE UTR
                   </span>
-                  <h3>Scan & Pay via PhonePe</h3>
+                  <h3>Scan PhonePe &amp; Confirm</h3>
                   <p>
-                    Scan Rajiv’s PhonePe QR code or use the direct UPI link to
-                    complete the payment of ₹{finalPrice.toLocaleString("en-IN")}.
+                    Pay <strong>₹{finalPrice.toLocaleString("en-IN")}</strong> via PhonePe QR, copy the 12-digit UTR from the receipt, and paste it below.
                   </p>
                 </div>
 
@@ -437,7 +538,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                         className="phonepe-qr-image"
                       />
                       <span className="phonepe-qr-caption">
-                        Scan with PhonePe, GPay, Paytm or any UPI app
+                        Scan with PhonePe, GPay, Paytm or any UPI App
                       </span>
                     </div>
 
@@ -447,7 +548,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                         <span className="phonepe-label">VERIFIED PAYEE</span>
                         <h4 className="phonepe-payee-name">{PAYEE_NAME}</h4>
                         <p className="phonepe-payee-desc">
-                          Certified Fitness & Nutrition Coach
+                          Aurafit Head Coach &amp; Founder
                         </p>
                       </div>
 
@@ -482,48 +583,119 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                         rel="noopener noreferrer"
                       >
                         <ExternalLink size={16} />
-                        <span>Open UPI App / PhonePe (Mobile)</span>
+                        <span>Open UPI App Directly (Mobile)</span>
                       </a>
                     </div>
                   </div>
                 </div>
 
-                {/* INSTRUCTIONS */}
-                <div className="phonepe-instructions">
-                  <h5>How to complete your booking:</h5>
-                  <ol>
-                    <li>
-                      Open <strong>PhonePe</strong>, <strong>Google Pay</strong>, or <strong>Paytm</strong> on your phone.
-                    </li>
-                    <li>
-                      Scan the QR code above or pay directly to <code>{UPI_ID}</code> for <strong>₹{finalPrice.toLocaleString("en-IN")}</strong>.
-                    </li>
-                    <li>
-                      After payment, copy the <strong>12-digit UTR / UPI Ref ID</strong> from your transaction receipt and enter it below.
-                    </li>
-                  </ol>
+                {/* STEP-BY-STEP PAYMENT GUIDE */}
+                <div className="phonepe-guide-box">
+                  <div className="phonepe-guide-step">
+                    <span className="phonepe-guide-num">1</span>
+                    <p>Open PhonePe / GPay &amp; scan the QR above or pay to <code>{UPI_ID}</code></p>
+                  </div>
+                  <div className="phonepe-guide-step">
+                    <span className="phonepe-guide-num">2</span>
+                    <p>After payment, tap "View Details" to see the <strong>12-digit UTR / UPI Ref ID</strong></p>
+                  </div>
+                  <div className="phonepe-guide-step">
+                    <span className="phonepe-guide-num">3</span>
+                    <p>Click <strong>"Paste from Clipboard"</strong> or paste the UTR number below</p>
+                  </div>
                 </div>
 
                 {/* CONFIRMATION FORM */}
                 <form className="booking-form" onSubmit={handlePaymentSubmit}>
                   <div className="booking-field booking-full">
-                    <label htmlFor="booking-utr">
-                      UPI Reference / UTR Number (12 digits) *
-                    </label>
-                    <div className="booking-input">
+                    <div className="booking-field-top-row">
+                      <label htmlFor="booking-utr">
+                        UPI Reference / UTR Number (12 Digits) *
+                      </label>
+                      <button
+                        type="button"
+                        className="booking-utr-help-btn"
+                        onClick={() => setShowUtrHelp((prev) => !prev)}
+                      >
+                        <HelpCircle size={13} />
+                        Where is my UTR?
+                      </button>
+                    </div>
+
+                    <div className="booking-input-with-action">
+                      <div className="booking-input">
+                        <input
+                          id="booking-utr"
+                          type="text"
+                          name="transactionId"
+                          value={formData.transactionId}
+                          onChange={handleChange}
+                          placeholder="e.g. 432109876543 (12-digit UTR)"
+                          required
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        className="booking-paste-btn"
+                        onClick={handlePasteUtr}
+                        title="Paste UTR from clipboard"
+                      >
+                        <Copy size={14} />
+                        <span>Paste</span>
+                      </button>
+                    </div>
+
+                    {isUtrValid && (
+                      <span className="booking-utr-valid-badge">
+                        <CheckCircle2 size={13} /> 12-digit UTR valid
+                      </span>
+                    )}
+
+                    {showUtrHelp && (
+                      <div className="booking-utr-help-card">
+                        <strong>Finding your UTR / UPI Reference Number:</strong>
+                        <ul>
+                          <li><strong>PhonePe:</strong> Open transaction history ➔ Tap payment ➔ Look for <strong>"UTR: 432109876543"</strong>.</li>
+                          <li><strong>Google Pay:</strong> Tap payment ➔ Look for <strong>"UPI transaction ID"</strong> (12 digits).</li>
+                          <li><strong>Paytm:</strong> Tap order ➔ Look for <strong>"UPI Ref No"</strong>.</li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* OPTIONAL SCREENSHOT ATTACHMENT */}
+                  <div className="booking-field booking-full">
+                    <label>Payment Screenshot (Optional)</label>
+                    <div className="booking-screenshot-area">
+                      {formData.screenshot ? (
+                        <div className="booking-screenshot-preview">
+                          <img src={formData.screenshot} alt="Payment Receipt Screenshot" />
+                          <button
+                            type="button"
+                            className="booking-remove-screenshot"
+                            onClick={handleRemoveScreenshot}
+                          >
+                            <Trash2 size={14} /> Remove
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          className="booking-upload-screenshot-btn"
+                          onClick={() => fileInputRef.current?.click()}
+                        >
+                          <ImageIcon size={16} />
+                          <span>Attach PhonePe Screenshot (Optional)</span>
+                        </button>
+                      )}
                       <input
-                        id="booking-utr"
-                        type="text"
-                        name="transactionId"
-                        value={formData.transactionId}
-                        onChange={handleChange}
-                        placeholder="e.g. 432109876543 (from PhonePe receipt)"
-                        required
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/*"
+                        style={{ display: "none" }}
+                        onChange={handleScreenshotChange}
                       />
                     </div>
-                    <small className="booking-field-hint">
-                      Look for "UTR" or "UPI Transaction ID" in your PhonePe / GPay screen.
-                    </small>
                   </div>
 
                   <div className="booking-full">
@@ -539,8 +711,8 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                     >
                       <span>
                         {isSubmitting
-                          ? "Verifying & Saving..."
-                          : `Confirm Payment (₹${finalPrice.toLocaleString("en-IN")})`}
+                          ? "Verifying & Generating Receipt..."
+                          : `Confirm & Generate Receipt (₹${finalPrice.toLocaleString("en-IN")})`}
                       </span>
 
                       <span>
@@ -557,15 +729,15 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                 <div className="booking-security">
                   <ShieldCheck size={14} />
                   <p>
-                    Payments are handled directly via PhonePe UPI to Rajiv Dalal.
-                    Your booking is securely recorded in Aurafit database and automated Google Gmail notification is sent instantly.
+                    Payments are transferred directly via PhonePe UPI to coach Rajiv Dalal.
+                    Your booking is recorded in the Aurafit database and an automated Google email notification is dispatched.
                   </p>
                 </div>
               </div>
             )}
 
             {/* =================================================
-                STEP 3: SUCCESS & CONFIRMATION RECEIPT
+                STEP 3: OFFICIAL TAX & ENROLLMENT RECEIPT (PRINTABLE)
             ================================================== */}
             {step === 3 && (
               <div className="booking-success-view">
@@ -574,61 +746,154 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                 </div>
 
                 <span className="booking-success-kicker">
-                  PAYMENT SUBMITTED SUCCESSFULLY
+                  ENROLLMENT &amp; PAYMENT VERIFIED
                 </span>
 
-                <h3>You're All Set!</h3>
+                <h3>Official Enrollment Receipt</h3>
 
                 <p className="booking-success-lead">
-                  Thank you, <strong>{formData.name}</strong>. Your payment details for the <strong>{program.name}</strong> have been received and recorded.
+                  Thank you, <strong>{formData.name}</strong>! Your payment has been recorded. Here is your official coaching enrollment receipt.
                 </p>
 
-                {bookingResult && (
-                  <div className="booking-receipt-box">
-                    <div className="booking-receipt-row">
-                      <span>Booking ID</span>
-                      <strong className="booking-receipt-id">
-                        {bookingResult.bookingId}
-                      </strong>
+                {/* OFFICIAL PRINTABLE RECEIPT CARD */}
+                <div className="official-receipt-card" id="printable-receipt">
+                  <div className="receipt-header">
+                    <div className="receipt-brand-row">
+                      <div className="receipt-logo-wrap">
+                        <img src="/images/logo.jpg" alt="Aurafit" />
+                      </div>
+                      <div>
+                        <h4>AURAFIT BY RAJIV</h4>
+                        <span className="receipt-tagline">Build Strength. Own Your Aura.</span>
+                      </div>
                     </div>
-
-                    <div className="booking-receipt-row">
-                      <span>Program</span>
-                      <strong>{bookingResult.programName}</strong>
-                    </div>
-
-                    <div className="booking-receipt-row">
-                      <span>Amount</span>
-                      <strong className="booking-receipt-price">
-                        ₹{bookingResult.amount.toLocaleString("en-IN")}
-                      </strong>
-                    </div>
-
-                    <div className="booking-receipt-row">
-                      <span>Transaction UTR</span>
-                      <code>{bookingResult.transactionId}</code>
-                    </div>
-
-                    <div className="booking-receipt-row">
-                      <span>Notification Status</span>
-                      <span className="booking-status-pill">
-                        Delivered to Coach on Google
-                      </span>
+                    <div className="receipt-badge-pill">
+                      <span>OFFICIAL RECEIPT</span>
                     </div>
                   </div>
-                )}
+
+                  <div className="receipt-divider"></div>
+
+                  <div className="receipt-grid">
+                    <div className="receipt-cell">
+                      <span className="receipt-lbl">Receipt / Booking ID</span>
+                      <strong className="receipt-val receipt-code">
+                        {bookingResult?.bookingId || "RJV-" + Date.now().toString(36).toUpperCase()}
+                      </strong>
+                    </div>
+                    <div className="receipt-cell">
+                      <span className="receipt-lbl">Date &amp; Time</span>
+                      <strong className="receipt-val">
+                        {new Date(bookingResult?.createdAt || Date.now()).toLocaleDateString("en-IN", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </strong>
+                    </div>
+                  </div>
+
+                  <div className="receipt-grid">
+                    <div className="receipt-cell">
+                      <span className="receipt-lbl">Enrolled Client</span>
+                      <strong className="receipt-val">{bookingResult?.name || formData.name}</strong>
+                      <small className="receipt-subval">{bookingResult?.phone || formData.phone}</small>
+                    </div>
+                    <div className="receipt-cell">
+                      <span className="receipt-lbl">Client Email</span>
+                      <strong className="receipt-val">{bookingResult?.email || formData.email}</strong>
+                    </div>
+                  </div>
+
+                  <div className="receipt-divider"></div>
+
+                  <div className="receipt-table">
+                    <div className="receipt-table-header">
+                      <span>Item / Coaching Plan</span>
+                      <span>Type</span>
+                      <span style={{ textAlign: "right" }}>Amount</span>
+                    </div>
+                    <div className="receipt-table-row">
+                      <div>
+                        <strong>{bookingResult?.programName || program?.name}</strong>
+                        <p>{program?.subtitle}</p>
+                      </div>
+                      <div>
+                        <span className="receipt-mode-pill">
+                          {(bookingResult?.mode || program?.mode) === "offline" ? "Bahadurgarh Hub" : "Online 1-to-1"}
+                        </span>
+                      </div>
+                      <div style={{ textAlign: "right" }}>
+                        <strong className="receipt-amount-highlight">
+                          ₹{(bookingResult?.amount || finalPrice).toLocaleString("en-IN")}
+                        </strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="receipt-divider"></div>
+
+                  <div className="receipt-grid">
+                    <div className="receipt-cell">
+                      <span className="receipt-lbl">Payment Mode</span>
+                      <span className="receipt-val">PhonePe UPI ({UPI_ID})</span>
+                    </div>
+                    <div className="receipt-cell">
+                      <span className="receipt-lbl">UTR / Transaction Ref</span>
+                      <code className="receipt-utr-code">
+                        {bookingResult?.transactionId || formData.transactionId}
+                      </code>
+                    </div>
+                  </div>
+
+                  <div className="receipt-footer">
+                    <div className="receipt-coach-stamp">
+                      <CheckCircle2 size={16} className="receipt-verified-icon" />
+                      <div>
+                        <strong>Verified by Rajiv Dalal</strong>
+                        <small>Founder &amp; Head Coach • +91 99968 89494</small>
+                      </div>
+                    </div>
+                    <div className="receipt-status-confirmed">
+                      <span>PAID &amp; CONFIRMED</span>
+                    </div>
+                  </div>
+                </div>
 
                 <div className="booking-success-info">
                   <p>
-                    A confirmation receipt has been sent to <strong>{formData.email}</strong>. Rajiv Dalal has also been notified via Google / Gmail.
-                    Rajiv will contact you shortly on <strong>{formData.phone}</strong> to start your transformation!
+                    <Check size={14} style={{ display: "inline", verticalAlign: "middle", marginRight: 4 }} />
+                    An automated copy of this receipt has been emailed to <strong>{formData.email}</strong>. Coach Rajiv Dalal will reach out to you directly at <strong>{formData.phone}</strong>.
                   </p>
+                </div>
+
+                {/* ACTION BUTTONS: PRINT, COPY, WHATSAPP */}
+                <div className="receipt-action-buttons">
+                  <button
+                    type="button"
+                    className="receipt-btn-print"
+                    onClick={handlePrintReceipt}
+                  >
+                    <Printer size={16} />
+                    <span>Download / Print Receipt</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="receipt-btn-copy"
+                    onClick={handleCopyReceipt}
+                  >
+                    <Copy size={16} />
+                    <span>Copy Receipt Details</span>
+                  </button>
                 </div>
 
                 <div className="booking-success-actions">
                   <a
                     href={`https://wa.me/919996889494?text=${encodeURIComponent(
-                      `Hi Rajiv! I just booked the ${program.name} plan (₹${finalPrice}) on Aurafit website. My Booking ID is ${
+                      `Hi Rajiv! I just enrolled in the ${program.name} plan (₹${finalPrice}) on Aurafit website. My Booking ID is ${
                         bookingResult?.bookingId || ""
                       } and my UTR is ${formData.transactionId}.`
                     )}`}
@@ -637,7 +902,7 @@ const BookingModal = ({ isOpen, onClose, program }) => {
                     className="booking-wa-btn"
                   >
                     <MessageCircle size={18} />
-                    <span>Chat with Rajiv on WhatsApp</span>
+                    <span>Send Receipt To Rajiv on WhatsApp</span>
                   </a>
 
                   <button

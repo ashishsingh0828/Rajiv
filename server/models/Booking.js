@@ -65,6 +65,10 @@ const bookingSchema = new mongoose.Schema(
       trim: true,
       default: "",
     },
+    paymentScreenshot: {
+      type: String,
+      default: "",
+    },
     paymentStatus: {
       type: String,
       enum: ["pending_verification", "verified", "failed"],
