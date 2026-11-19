@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import bookingRoutes from "./routes/bookingRoutes.js";
 import consultationRoutes from "./routes/consultationRoutes.js";
@@ -9,6 +11,10 @@ import contactRoutes from "./routes/contactRoutes.js";
 import { connectDB } from "./config/db.js";
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const distPath = path.join(__dirname, "../dist");
 
 const app = express();
 
@@ -21,6 +27,7 @@ app.use(
 );
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+app.use(express.static(distPath));
 
 // Ensure DB is connected for every request (especially on serverless Vercel)
 app.use(async (req, res, next) => {
@@ -76,6 +83,18 @@ app.get("/api/health", (req, res) => {
       payee: process.env.PHONEPE_PAYEE_NAME || "Rajiv Dalal",
     },
   });
+});
+
+// Client-side SPA routing fallback for production deployment (AmbitionHost / cPanel / Node.js)
+app.use((req, res, next) => {
+  if (req.method === "GET" && !req.path.startsWith("/api")) {
+    return res.sendFile(path.join(distPath, "index.html"), (err) => {
+      if (err) {
+        next();
+      }
+    });
+  }
+  next();
 });
 
 // Global Error Handler
